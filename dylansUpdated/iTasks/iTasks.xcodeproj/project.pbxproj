@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		880990CC18E9BEBA00D0EE96 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 880990CB18E9BEBA00D0EE96 /* Task.m */; };
+		8830D69F18EA3C23002D599A /* AddNewTaskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8830D69E18EA3C23002D599A /* AddNewTaskVC.m */; };
+		886E449C18E731750027AEC1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 886E449B18E731750027AEC1 /* CoreLocation.framework */; };
+		886E449E18E731860027AEC1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 886E449D18E731860027AEC1 /* MapKit.framework */; };
+		88A31B8418E50DB10012B9AD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A31B8318E50DB10012B9AD /* Foundation.framework */; };
+		88A31B8618E50DB10012B9AD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A31B8518E50DB10012B9AD /* CoreGraphics.framework */; };
+		88A31B8818E50DB10012B9AD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A31B8718E50DB10012B9AD /* UIKit.framework */; };
+		88A31B8E18E50DB10012B9AD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88A31B8C18E50DB10012B9AD /* InfoPlist.strings */; };
+		88A31B9018E50DB10012B9AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A31B8F18E50DB10012B9AD /* main.m */; };
+		88A31B9418E50DB10012B9AD /* TKSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A31B9318E50DB10012B9AD /* TKSAppDelegate.m */; };
+		88A31B9718E50DB10012B9AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88A31B9518E50DB10012B9AD /* Main.storyboard */; };
+		88A31B9A18E50DB10012B9AD /* TKSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A31B9918E50DB10012B9AD /* TKSViewController.m */; };
+		88A31B9C18E50DB10012B9AD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88A31B9B18E50DB10012B9AD /* Images.xcassets */; };
+		88A31BA318E50DB10012B9AD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A31BA218E50DB10012B9AD /* XCTest.framework */; };
+		88A31BA418E50DB10012B9AD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A31B8318E50DB10012B9AD /* Foundation.framework */; };
+		88A31BA518E50DB10012B9AD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A31B8718E50DB10012B9AD /* UIKit.framework */; };
+		88A31BAD18E50DB10012B9AD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88A31BAB18E50DB10012B9AD /* InfoPlist.strings */; };
+		88A31BAF18E50DB10012B9AD /* iTasksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A31BAE18E50DB10012B9AD /* iTasksTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		88A31BA618E50DB10012B9AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88A31B7818E50DB10012B9AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88A31B7F18E50DB10012B9AD;
+			remoteInfo = iTasks;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		880990CA18E9BEBA00D0EE96 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		880990CB18E9BEBA00D0EE96 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		8830D69D18EA3C23002D599A /* AddNewTaskVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewTaskVC.h; sourceTree = "<group>"; };
+		8830D69E18EA3C23002D599A /* AddNewTaskVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewTaskVC.m; sourceTree = "<group>"; };
+		886E449B18E731750027AEC1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		886E449D18E731860027AEC1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		88A31B8018E50DB10012B9AD /* iTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88A31B8318E50DB10012B9AD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		88A31B8518E50DB10012B9AD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		88A31B8718E50DB10012B9AD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		88A31B8B18E50DB10012B9AD /* iTasks-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iTasks-Info.plist"; sourceTree = "<group>"; };
+		88A31B8D18E50DB10012B9AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		88A31B8F18E50DB10012B9AD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		88A31B9118E50DB10012B9AD /* iTasks-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iTasks-Prefix.pch"; sourceTree = "<group>"; };
+		88A31B9218E50DB10012B9AD /* TKSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKSAppDelegate.h; sourceTree = "<group>"; };
+		88A31B9318E50DB10012B9AD /* TKSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKSAppDelegate.m; sourceTree = "<group>"; };
+		88A31B9618E50DB10012B9AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		88A31B9818E50DB10012B9AD /* TKSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKSViewController.h; sourceTree = "<group>"; };
+		88A31B9918E50DB10012B9AD /* TKSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKSViewController.m; sourceTree = "<group>"; };
+		88A31B9B18E50DB10012B9AD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		88A31BA118E50DB10012B9AD /* iTasksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTasksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88A31BA218E50DB10012B9AD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		88A31BAA18E50DB10012B9AD /* iTasksTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iTasksTests-Info.plist"; sourceTree = "<group>"; };
+		88A31BAC18E50DB10012B9AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		88A31BAE18E50DB10012B9AD /* iTasksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iTasksTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		88A31B7D18E50DB10012B9AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				886E449E18E731860027AEC1 /* MapKit.framework in Frameworks */,
+				886E449C18E731750027AEC1 /* CoreLocation.framework in Frameworks */,
+				88A31B8618E50DB10012B9AD /* CoreGraphics.framework in Frameworks */,
+				88A31B8818E50DB10012B9AD /* UIKit.framework in Frameworks */,
+				88A31B8418E50DB10012B9AD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88A31B9E18E50DB10012B9AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88A31BA318E50DB10012B9AD /* XCTest.framework in Frameworks */,
+				88A31BA518E50DB10012B9AD /* UIKit.framework in Frameworks */,
+				88A31BA418E50DB10012B9AD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		88A31B7718E50DB10012B9AD = {
+			isa = PBXGroup;
+			children = (
+				88A31B8918E50DB10012B9AD /* iTasks */,
+				88A31BA818E50DB10012B9AD /* iTasksTests */,
+				88A31B8218E50DB10012B9AD /* Frameworks */,
+				88A31B8118E50DB10012B9AD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		88A31B8118E50DB10012B9AD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88A31B8018E50DB10012B9AD /* iTasks.app */,
+				88A31BA118E50DB10012B9AD /* iTasksTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88A31B8218E50DB10012B9AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				886E449D18E731860027AEC1 /* MapKit.framework */,
+				886E449B18E731750027AEC1 /* CoreLocation.framework */,
+				88A31B8318E50DB10012B9AD /* Foundation.framework */,
+				88A31B8518E50DB10012B9AD /* CoreGraphics.framework */,
+				88A31B8718E50DB10012B9AD /* UIKit.framework */,
+				88A31BA218E50DB10012B9AD /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		88A31B8918E50DB10012B9AD /* iTasks */ = {
+			isa = PBXGroup;
+			children = (
+				880990CA18E9BEBA00D0EE96 /* Task.h */,
+				880990CB18E9BEBA00D0EE96 /* Task.m */,
+				88A31B9218E50DB10012B9AD /* TKSAppDelegate.h */,
+				88A31B9318E50DB10012B9AD /* TKSAppDelegate.m */,
+				88A31B9518E50DB10012B9AD /* Main.storyboard */,
+				88A31B9818E50DB10012B9AD /* TKSViewController.h */,
+				88A31B9918E50DB10012B9AD /* TKSViewController.m */,
+				8830D69D18EA3C23002D599A /* AddNewTaskVC.h */,
+				8830D69E18EA3C23002D599A /* AddNewTaskVC.m */,
+				88A31B9B18E50DB10012B9AD /* Images.xcassets */,
+				88A31B8A18E50DB10012B9AD /* Supporting Files */,
+			);
+			path = iTasks;
+			sourceTree = "<group>";
+		};
+		88A31B8A18E50DB10012B9AD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88A31B8B18E50DB10012B9AD /* iTasks-Info.plist */,
+				88A31B8C18E50DB10012B9AD /* InfoPlist.strings */,
+				88A31B8F18E50DB10012B9AD /* main.m */,
+				88A31B9118E50DB10012B9AD /* iTasks-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88A31BA818E50DB10012B9AD /* iTasksTests */ = {
+			isa = PBXGroup;
+			children = (
+				88A31BAE18E50DB10012B9AD /* iTasksTests.m */,
+				88A31BA918E50DB10012B9AD /* Supporting Files */,
+			);
+			path = iTasksTests;
+			sourceTree = "<group>";
+		};
+		88A31BA918E50DB10012B9AD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88A31BAA18E50DB10012B9AD /* iTasksTests-Info.plist */,
+				88A31BAB18E50DB10012B9AD /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		88A31B7F18E50DB10012B9AD /* iTasks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88A31BB218E50DB10012B9AD /* Build configuration list for PBXNativeTarget "iTasks" */;
+			buildPhases = (
+				88A31B7C18E50DB10012B9AD /* Sources */,
+				88A31B7D18E50DB10012B9AD /* Frameworks */,
+				88A31B7E18E50DB10012B9AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iTasks;
+			productName = iTasks;
+			productReference = 88A31B8018E50DB10012B9AD /* iTasks.app */;
+			productType = "com.apple.product-type.application";
+		};
+		88A31BA018E50DB10012B9AD /* iTasksTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88A31BB518E50DB10012B9AD /* Build configuration list for PBXNativeTarget "iTasksTests" */;
+			buildPhases = (
+				88A31B9D18E50DB10012B9AD /* Sources */,
+				88A31B9E18E50DB10012B9AD /* Frameworks */,
+				88A31B9F18E50DB10012B9AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88A31BA718E50DB10012B9AD /* PBXTargetDependency */,
+			);
+			name = iTasksTests;
+			productName = iTasksTests;
+			productReference = 88A31BA118E50DB10012B9AD /* iTasksTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		88A31B7818E50DB10012B9AD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TKS;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Dylan Thiemann";
+				TargetAttributes = {
+					88A31B7F18E50DB10012B9AD = {
+						DevelopmentTeam = 625732G463;
+					};
+					88A31BA018E50DB10012B9AD = {
+						TestTargetID = 88A31B7F18E50DB10012B9AD;
+					};
+				};
+			};
+			buildConfigurationList = 88A31B7B18E50DB10012B9AD /* Build configuration list for PBXProject "iTasks" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 88A31B7718E50DB10012B9AD;
+			productRefGroup = 88A31B8118E50DB10012B9AD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				88A31B7F18E50DB10012B9AD /* iTasks */,
+				88A31BA018E50DB10012B9AD /* iTasksTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		88A31B7E18E50DB10012B9AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88A31B9C18E50DB10012B9AD /* Images.xcassets in Resources */,
+				88A31B8E18E50DB10012B9AD /* InfoPlist.strings in Resources */,
+				88A31B9718E50DB10012B9AD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88A31B9F18E50DB10012B9AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88A31BAD18E50DB10012B9AD /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88A31B7C18E50DB10012B9AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8830D69F18EA3C23002D599A /* AddNewTaskVC.m in Sources */,
+				880990CC18E9BEBA00D0EE96 /* Task.m in Sources */,
+				88A31B9018E50DB10012B9AD /* main.m in Sources */,
+				88A31B9A18E50DB10012B9AD /* TKSViewController.m in Sources */,
+				88A31B9418E50DB10012B9AD /* TKSAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88A31B9D18E50DB10012B9AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88A31BAF18E50DB10012B9AD /* iTasksTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		88A31BA718E50DB10012B9AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88A31B7F18E50DB10012B9AD /* iTasks */;
+			targetProxy = 88A31BA618E50DB10012B9AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		88A31B8C18E50DB10012B9AD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88A31B8D18E50DB10012B9AD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		88A31B9518E50DB10012B9AD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88A31B9618E50DB10012B9AD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		88A31BAB18E50DB10012B9AD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88A31BAC18E50DB10012B9AD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		88A31BB018E50DB10012B9AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		88A31BB118E50DB10012B9AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		88A31BB318E50DB10012B9AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dylan Thiemann (DP887FFY27)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iTasks/iTasks-Prefix.pch";
+				INFOPLIST_FILE = "iTasks/iTasks-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		88A31BB418E50DB10012B9AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dylan Thiemann (DP887FFY27)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iTasks/iTasks-Prefix.pch";
+				INFOPLIST_FILE = "iTasks/iTasks-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		88A31BB618E50DB10012B9AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iTasks.app/iTasks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iTasks/iTasks-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "iTasksTests/iTasksTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		88A31BB718E50DB10012B9AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iTasks.app/iTasks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iTasks/iTasks-Prefix.pch";
+				INFOPLIST_FILE = "iTasksTests/iTasksTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		88A31B7B18E50DB10012B9AD /* Build configuration list for PBXProject "iTasks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88A31BB018E50DB10012B9AD /* Debug */,
+				88A31BB118E50DB10012B9AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88A31BB218E50DB10012B9AD /* Build configuration list for PBXNativeTarget "iTasks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88A31BB318E50DB10012B9AD /* Debug */,
+				88A31BB418E50DB10012B9AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88A31BB518E50DB10012B9AD /* Build configuration list for PBXNativeTarget "iTasksTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88A31BB618E50DB10012B9AD /* Debug */,
+				88A31BB718E50DB10012B9AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 88A31B7818E50DB10012B9AD /* Project object */;
+}
