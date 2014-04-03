@@ -13,15 +13,15 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iMv-HL-9Ga">
-                                <rect key="frame" x="0.0" y="64" width="320" height="223"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="173"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6qd-Zb-xg4">
-                                <rect key="frame" x="0.0" y="286" width="320" height="282"/>
+                                <rect key="frame" x="0.0" y="236" width="320" height="244"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -38,14 +38,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="6qd-Zb-xg4" secondAttribute="bottom" id="5J4-cH-4dx"/>
-                            <constraint firstItem="iMv-HL-9Ga" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="KXS-9n-VQi"/>
-                            <constraint firstItem="6qd-Zb-xg4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="222" id="Wn1-2k-g4Q"/>
-                            <constraint firstItem="iMv-HL-9Ga" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="XHZ-lO-rXi"/>
-                            <constraint firstAttribute="trailing" secondItem="6qd-Zb-xg4" secondAttribute="trailing" id="nhm-tF-MbI"/>
-                            <constraint firstItem="iMv-HL-9Ga" firstAttribute="leading" secondItem="6qd-Zb-xg4" secondAttribute="leading" id="xJJ-kB-fII"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="iMv-HL-9Ga" secondAttribute="bottom" constant="281" id="xgW-PO-FtV"/>
-                            <constraint firstItem="6qd-Zb-xg4" firstAttribute="trailing" secondItem="iMv-HL-9Ga" secondAttribute="trailing" id="ybY-Sk-ost"/>
+                            <constraint firstAttribute="bottom" secondItem="6qd-Zb-xg4" secondAttribute="bottom" id="5GN-1h-gd8"/>
+                            <constraint firstItem="iMv-HL-9Ga" firstAttribute="leading" secondItem="6qd-Zb-xg4" secondAttribute="leading" id="JKY-NM-Q3X"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="iMv-HL-9Ga" secondAttribute="bottom" constant="243" id="MKj-EC-4Tb"/>
+                            <constraint firstItem="iMv-HL-9Ga" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="Zb0-jd-yYB"/>
+                            <constraint firstAttribute="trailing" secondItem="iMv-HL-9Ga" secondAttribute="trailing" id="jNt-sh-WMf"/>
+                            <constraint firstItem="iMv-HL-9Ga" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="oQZ-ya-rK9"/>
+                            <constraint firstItem="6qd-Zb-xg4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="172" id="p3w-lT-rhu"/>
+                            <constraint firstItem="6qd-Zb-xg4" firstAttribute="trailing" secondItem="iMv-HL-9Ga" secondAttribute="trailing" id="wls-Bh-QZC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hNt-xz-mKN">
@@ -73,8 +73,19 @@
                         <viewControllerLayoutGuide type="bottom" id="J5q-I6-iwA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="h2Z-BA-moJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fnb-zo-vhb">
+                                <rect key="frame" x="20" y="95" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldReturn:" destination="ln3-eM-XIp" eventType="editingDidEndOnExit" id="pJx-9s-7Ww"/>
+                                </connections>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="go1-Zp-YqN">
@@ -84,6 +95,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchText" destination="fnb-zo-vhb" id="eig-n0-IuK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d5c-3t-FYY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -129,6 +143,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>

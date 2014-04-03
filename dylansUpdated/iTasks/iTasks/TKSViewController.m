@@ -27,20 +27,6 @@
     return _tasksList;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    _mapView.showsUserLocation = YES;
-    _mapView.delegate = self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
@@ -55,6 +41,7 @@
         NSLog(@"Adding new task! Hopefully");
         UINavigationController *navigationController = segue.destinationViewController;
         AddNewTaskVC *addNewTaskVC = [navigationController viewControllers][0];
+        addNewTaskVC.mapHandle = _mapView;
         addNewTaskVC.delegate = self;
     }
 }
@@ -69,6 +56,27 @@
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     _mapView.centerCoordinate = userLocation.location.coordinate;
+}
+
+- (void)zoomOnUserLocation {
+    MKUserLocation *userLocation = _mapView.userLocation;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.location.coordinate, 2000, 2000);
+    [_mapView setRegion:region animated:YES];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+    _mapView.showsUserLocation = YES;
+    _mapView.delegate = self;
+    [self zoomOnUserLocation];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

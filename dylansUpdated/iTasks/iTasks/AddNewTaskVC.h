@@ -19,8 +19,11 @@
 
 @interface AddNewTaskVC : UIViewController
 
+@property (strong, nonatomic) IBOutlet UITextField *searchText;
+@property (strong,nonatomic) MKMapView *mapHandle;
 @property (nonatomic, weak) id<AddNewTaskVCDelegate> delegate;
 
 - (IBAction)sender:(id)sender;
+- (IBAction)textFieldReturn:(id)sender;
 
 @end
