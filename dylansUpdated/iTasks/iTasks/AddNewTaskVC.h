@@ -22,6 +22,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *searchText;
 @property (strong,nonatomic) MKMapView *mapHandle;
 @property (nonatomic, weak) id<AddNewTaskVCDelegate> delegate;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)textFieldReturn:(id)sender;

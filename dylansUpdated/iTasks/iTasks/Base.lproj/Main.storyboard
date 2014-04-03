@@ -80,11 +80,15 @@
                                 <rect key="frame" x="20" y="95" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                 <connections>
                                     <action selector="textFieldReturn:" destination="ln3-eM-XIp" eventType="editingDidEndOnExit" id="pJx-9s-7Ww"/>
                                 </connections>
                             </textField>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5nY-Ne-LCA">
+                                <rect key="frame" x="150" y="145" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -101,6 +105,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelButton" destination="kz1-A3-Han" id="3mC-yu-m7W"/>
+                        <outlet property="completingSearchIndicator" destination="5nY-Ne-LCA" id="ytB-bU-WLB"/>
+                        <outlet property="doneButton" destination="U3I-3b-fS1" id="cnu-GH-AIR"/>
                         <outlet property="searchText" destination="fnb-zo-vhb" id="eig-n0-IuK"/>
                     </connections>
                 </viewController>

@@ -12,6 +12,7 @@
 
 @property (strong,nonatomic) NSMutableArray *searchResults;
 @property (strong,nonatomic) Task *completeTask;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *completingSearchIndicator;
 
 @end
 
@@ -24,7 +25,19 @@
     return _searchResults;
 }
 
+-(UIActivityIndicatorView *)completingSearchIndicator {
+    if (!_completingSearchIndicator) {
+        _completingSearchIndicator = [[UIActivityIndicatorView alloc] init];
+    }
+    return _completingSearchIndicator;
+}
+
 -(void)performSearch {
+    // activate search inidicator
+    [self.completingSearchIndicator startAnimating];
+    self.completingSearchIndicator.hidesWhenStopped = YES;
+    self.doneButton.enabled = NO;
+    self.cancelButton.enabled = NO;
     
     // Create a search request
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
@@ -49,6 +62,11 @@
          
          // save results in an instance variable
          self.searchResults = placemarks;
+         
+         // reactivate everything!
+         [self.completingSearchIndicator stopAnimating];
+         self.doneButton.enabled = YES;
+         self.cancelButton.enabled = YES;
      }];
 }
 
@@ -65,6 +83,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.completingSearchIndicator.hidesWhenStopped = YES;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,6 +113,7 @@
 - (IBAction)textFieldReturn:(id)sender {
     [sender resignFirstResponder];
     [self performSearch];
+    
 }
 
 // When user hits done...
