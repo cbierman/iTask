@@ -91,7 +91,12 @@
                     <navigationItem key="navigationItem" id="go1-Zp-YqN">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="kz1-A3-Han">
                             <connections>
-                                <action selector="sender:" destination="ln3-eM-XIp" id="lOp-cG-356"/>
+                                <action selector="cancel:" destination="ln3-eM-XIp" id="q7L-xY-y2Q"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="U3I-3b-fS1">
+                            <connections>
+                                <action selector="done:" destination="ln3-eM-XIp" id="lvp-cJ-eaj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

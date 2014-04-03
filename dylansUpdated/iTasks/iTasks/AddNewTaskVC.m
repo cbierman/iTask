@@ -11,6 +11,7 @@
 @interface AddNewTaskVC ()
 
 @property (strong,nonatomic) NSMutableArray *searchResults;
+@property (strong,nonatomic) Task *completeTask;
 
 @end
 
@@ -24,20 +25,30 @@
 }
 
 -(void)performSearch {
+    
+    // Create a search request
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
     request.naturalLanguageQuery = self.searchText.text;
+    
+    // adjust the region of search so it is about 5000m x 5000m
+    // about 2.5x bigger than viewing region
+    // we should allow users to adjust this
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapHandle.userLocation.location.coordinate, 5000, 5000);;
     request.region = region;
     
     MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
     [search startWithCompletionHandler:^ (MKLocalSearchResponse *response, NSError *error)
-     {
+     {  // a block which loads each item into an array for us to use
+        // an array of MKMapItem objects
          NSMutableArray *placemarks = [NSMutableArray array];
          for (MKMapItem *item in response.mapItems) {
              [placemarks addObject:item.placemark];
          }
-         [self.mapHandle removeAnnotations:[self.mapHandle annotations]];
-         [self.mapHandle addAnnotations:placemarks];
+         // just a quick check to see how many returns we are getting
+         NSLog(@"%i",placemarks.count);
+         
+         // save results in an instance variable
+         self.searchResults = placemarks;
      }];
 }
 
@@ -73,12 +84,26 @@
 }
 */
 
-- (IBAction)sender:(id)sender {
+// If user hits "Cance", just go back to home screen
+- (IBAction)cancel:(id)sender {
     [self.delegate AddNewTaskViewControllerDidCancel:self];
 }
 
+//When user hits "Return" on keyboard, it performs search function
 - (IBAction)textFieldReturn:(id)sender {
     [sender resignFirstResponder];
     [self performSearch];
+}
+
+// When user hits done...
+- (IBAction)done:(id)sender {
+    // we remove all current annotations on map
+    [self.mapHandle removeAnnotations:[self.mapHandle annotations]];
+    // and if we have search items, pertaining to our search, we update map annotations
+    if (self.mapHandle.annotations.count > 0)
+        [self.mapHandle addAnnotations:self.searchResults];
+    
+    // Then mimic a cancel because we have yet to add an item
+    [self.delegate AddNewTaskViewControllerDidCancel:self];
 }
 @end

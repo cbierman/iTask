@@ -23,7 +23,8 @@
 @property (strong,nonatomic) MKMapView *mapHandle;
 @property (nonatomic, weak) id<AddNewTaskVCDelegate> delegate;
 
-- (IBAction)sender:(id)sender;
+- (IBAction)cancel:(id)sender;
 - (IBAction)textFieldReturn:(id)sender;
+- (IBAction)done:(id)sender;
 
 @end
