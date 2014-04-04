@@ -20,6 +20,8 @@
 @interface AddNewTaskVC : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITextField *searchText;
+
+// A handle on our map view... passed by delegate
 @property (strong,nonatomic) MKMapView *mapHandle;
 @property (nonatomic, weak) id<AddNewTaskVCDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *doneButton;
