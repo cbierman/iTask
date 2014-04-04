@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88012F1518EE36CC00D80941 /* SearchResultsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88012F1418EE36CC00D80941 /* SearchResultsVC.m */; };
 		880990CC18E9BEBA00D0EE96 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 880990CB18E9BEBA00D0EE96 /* Task.m */; };
 		8830D69F18EA3C23002D599A /* AddNewTaskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8830D69E18EA3C23002D599A /* AddNewTaskVC.m */; };
 		886E449C18E731750027AEC1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 886E449B18E731750027AEC1 /* CoreLocation.framework */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		88012F1318EE36CC00D80941 /* SearchResultsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsVC.h; sourceTree = "<group>"; };
+		88012F1418EE36CC00D80941 /* SearchResultsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsVC.m; sourceTree = "<group>"; };
 		880990CA18E9BEBA00D0EE96 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		880990CB18E9BEBA00D0EE96 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		8830D69D18EA3C23002D599A /* AddNewTaskVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewTaskVC.h; sourceTree = "<group>"; };
@@ -135,6 +138,8 @@
 				88A31B9918E50DB10012B9AD /* TKSViewController.m */,
 				8830D69D18EA3C23002D599A /* AddNewTaskVC.h */,
 				8830D69E18EA3C23002D599A /* AddNewTaskVC.m */,
+				88012F1318EE36CC00D80941 /* SearchResultsVC.h */,
+				88012F1418EE36CC00D80941 /* SearchResultsVC.m */,
 				88A31B9B18E50DB10012B9AD /* Images.xcassets */,
 				88A31B8A18E50DB10012B9AD /* Supporting Files */,
 			);
@@ -276,6 +281,7 @@
 				88A31B9018E50DB10012B9AD /* main.m in Sources */,
 				88A31B9A18E50DB10012B9AD /* TKSViewController.m in Sources */,
 				88A31B9418E50DB10012B9AD /* TKSAppDelegate.m in Sources */,
+				88012F1518EE36CC00D80941 /* SearchResultsVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,7 +45,7 @@
     
     // adjust the region of search so it is about 5000m x 5000m
     // about 2.5x bigger than viewing region
-    // we should allow users to adjust this
+    // we should allow users to adjust this ****
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapHandle.userLocation.location.coordinate, 5000, 5000);;
     request.region = region;
     
@@ -58,7 +58,7 @@
              [placemarks addObject:item.placemark];
          }
          // just a quick check to see how many returns we are getting
-         NSLog(@"%i",placemarks.count);
+         NSLog(@"%lu",(unsigned long)placemarks.count);
          
          // save results in an instance variable
          self.searchResults = placemarks;
@@ -68,6 +68,20 @@
          self.doneButton.enabled = YES;
          self.cancelButton.enabled = YES;
      }];
+    
+    
+}
+/*
+- (IBAction)method1Pressed:(UIButton *)sender {
+    DetailViewController *detailVC = [self.storyboard instantiateViewControllerWithIdentifier: @"childVC"];
+    detailVC.delegate = self;
+    detailVC.labelTextToDisplay = @"Method 1 pressed";
+    [self presentViewController:detailVC animated:YES completion:Nil];
+}
+*/
+
+- (void) showSearchResults {
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

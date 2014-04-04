@@ -38,7 +38,7 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addNewTask"]) {
-        NSLog(@"Adding new task! Hopefully");
+        //NSLog(@"Adding new task! Hopefully");
         UINavigationController *navigationController = segue.destinationViewController;
         AddNewTaskVC *addNewTaskVC = [navigationController viewControllers][0];
         addNewTaskVC.mapHandle = _mapView;
