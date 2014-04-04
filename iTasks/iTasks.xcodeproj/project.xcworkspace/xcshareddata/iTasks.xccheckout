@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E96AE708-D4A3-4C02-BDC0-6B046250F11E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iTasks</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4E56AFB0-C851-4D77-A88B-9AC45B2D65EF</key>
+		<string>https://github.com/cbierman/iTask.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>dylansUpdated/iTasks/iTasks.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4E56AFB0-C851-4D77-A88B-9AC45B2D65EF</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/cbierman/iTask.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4E56AFB0-C851-4D77-A88B-9AC45B2D65EF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4E56AFB0-C851-4D77-A88B-9AC45B2D65EF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iTask</string>
+		</dict>
+	</array>
+</dict>
+</plist>
