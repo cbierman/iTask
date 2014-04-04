@@ -8,14 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol searchResultsVCDelegate <NSObject>
-
--(void) dismissChildVC;
-
-@end
-
 @interface SearchResultsVC : UIViewController
-
-@property (weak, nonatomic) id<searchResultsVCDelegate> delegate;
 
 @end

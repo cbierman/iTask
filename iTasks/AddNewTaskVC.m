@@ -7,9 +7,8 @@
 //
 
 #import "AddNewTaskVC.h"
-#import "SearchResultsVC.h"
 
-@interface AddNewTaskVC () <searchResultsVCDelegate>
+@interface AddNewTaskVC ()
 
 @property (strong,nonatomic) NSMutableArray *searchResults;
 @property (strong,nonatomic) Task *completeTask;
@@ -17,7 +16,7 @@
 
 @end
 
-@implementation AddNewTaskVC //<searchResultsVCDelegate>
+@implementation AddNewTaskVC
 
 - (NSMutableArray *)searchResults {
     if (!_searchResults) {
@@ -82,8 +81,6 @@
 */
 
 - (void) showSearchResults {
-    SearchResultsVC *searchResultsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"searchResults"];
-    searchResultsVC.delegate = self;
     
 }
 
