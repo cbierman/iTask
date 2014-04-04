@@ -27,29 +27,35 @@
     return _tasksList;
 }
 
+// Stuff for table view (not used yet)
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 
+// Stuff for table view (not used yet)
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mapItem"];
     return cell;
 }
 
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addNewTask"]) {
         //NSLog(@"Adding new task! Hopefully");
+        // Get a handle on our new view controller
         UINavigationController *navigationController = segue.destinationViewController;
         AddNewTaskVC *addNewTaskVC = [navigationController viewControllers][0];
-        addNewTaskVC.mapHandle = _mapView;
+        addNewTaskVC.mapHandle = _mapView;          // send a handle to our map class
         addNewTaskVC.delegate = self;
     }
 }
 
+// Gets called
 -(void)AddNewTaskViewControllerDidCancel:(AddNewTaskVC *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+// Gets called when user hits done (not implemented yet)
 - (void) AddNewTaskViewController:(AddNewTaskVC *)controller didAddTask:(Task *)newTask {
     
 }
@@ -58,6 +64,7 @@
     _mapView.centerCoordinate = userLocation.location.coordinate;
 }
 
+// Loads the map zoomed in as well
 - (void)zoomOnUserLocation {
     MKUserLocation *userLocation = _mapView.userLocation;
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.location.coordinate, 2000, 2000);
