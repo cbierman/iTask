@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "Task.h"
+#import "SearchResultsVC.h"
 
 @class AddNewTaskVC;
 
@@ -17,7 +18,7 @@
 - (void)AddNewTaskViewController:(AddNewTaskVC *)controller didAddTask:(Task *)newTask;
 @end
 
-@interface AddNewTaskVC : UIViewController
+@interface AddNewTaskVC : UIViewController <searchVCDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *searchText;
 

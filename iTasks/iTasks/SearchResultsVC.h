@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
+
+@class SearchResultsVC;
+@protocol searchVCDelegate <NSObject>
+
+- (void)SearchResultsControllerDidCancel:(SearchResultsVC *)controller;
+- (void)SearchResultsViewController:(SearchResultsVC *)controller didChoosePlace:(MKMapItem *)mapItem;
+
+@end
 
 @interface SearchResultsVC : UIViewController
+
+@property (weak,nonatomic) id<searchVCDelegate> delegate;
+
+- (IBAction)cancelPressed:(id)sender;
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import "AddNewTaskVC.h"
+#import "SearchResultsVC.h"
 
-@interface AddNewTaskVC ()
+@interface AddNewTaskVC () <searchVCDelegate>
 
 @property (strong,nonatomic) NSMutableArray *searchResults;
 @property (strong,nonatomic) Task *completeTask;
@@ -17,6 +18,15 @@
 @end
 
 @implementation AddNewTaskVC
+
+-(void)SearchResultsControllerDidCancel:(SearchResultsVC *)controller {
+    NSLog(@"Cancelling");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) SearchResultsViewController:(SearchResultsVC *)controller didChoosePlace:(MKMapItem *)mapItem {
+    
+}
 
 - (NSMutableArray *)searchResults {
     if (!_searchResults) {
@@ -32,6 +42,7 @@
     return _completingSearchIndicator;
 }
 
+//Performs the search
 -(void)performSearch {
     // activate search inidicator
     [self.completingSearchIndicator startAnimating];
@@ -67,22 +78,19 @@
          [self.completingSearchIndicator stopAnimating];
          self.doneButton.enabled = YES;
          self.cancelButton.enabled = YES;
+         
+        
      }];
-    
-    
 }
-/*
-- (IBAction)method1Pressed:(UIButton *)sender {
-    DetailViewController *detailVC = [self.storyboard instantiateViewControllerWithIdentifier: @"childVC"];
-    detailVC.delegate = self;
-    detailVC.labelTextToDisplay = @"Method 1 pressed";
-    [self presentViewController:detailVC animated:YES completion:Nil];
-}
-*/
 
-- (void) showSearchResults {
-    
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"searchModal"]){
+        UINavigationController *navigationController = segue.destinationViewController;
+        SearchResultsVC *searchVC = [navigationController viewControllers][0];
+        searchVC.delegate = self;
+    }
 }
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -107,18 +115,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-// If user hits "Cance", just go back to home screen
+// If user hits "Cancel", just go back to home screen
 - (IBAction)cancel:(id)sender {
     [self.delegate AddNewTaskViewControllerDidCancel:self];
 }
@@ -126,7 +123,7 @@
 //When user hits "Return" on keyboard, it performs search function
 - (IBAction)textFieldReturn:(id)sender {
     [sender resignFirstResponder];
-    [self performSearch];
+    //[self performSearch];
     
 }
 

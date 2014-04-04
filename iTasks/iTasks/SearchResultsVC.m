@@ -10,6 +10,8 @@
 
 @interface SearchResultsVC ()
 
+
+
 @end
 
 @implementation SearchResultsVC
@@ -45,5 +47,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(IBAction)cancelPressed:(id)sender {
+    //NSLog(@"Clsing things");
+    [self.delegate SearchResultsControllerDidCancel:self];
+}
+
 
 @end
