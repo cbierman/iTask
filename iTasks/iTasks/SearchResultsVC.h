@@ -21,6 +21,7 @@
 @interface SearchResultsVC : UIViewController
 
 @property (weak,nonatomic) id<searchVCDelegate> delegate;
+@property (strong,nonatomic) NSArray *searchResults;
 
 - (IBAction)cancelPressed:(id)sender;
 

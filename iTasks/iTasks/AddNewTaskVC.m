@@ -19,14 +19,6 @@
 
 @implementation AddNewTaskVC
 
--(void)SearchResultsControllerDidCancel:(SearchResultsVC *)controller {
-    NSLog(@"Cancelling");
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void) SearchResultsViewController:(SearchResultsVC *)controller didChoosePlace:(MKMapItem *)mapItem {
-    
-}
 
 - (NSMutableArray *)searchResults {
     if (!_searchResults) {
@@ -40,6 +32,15 @@
         _completingSearchIndicator = [[UIActivityIndicatorView alloc] init];
     }
     return _completingSearchIndicator;
+}
+
+// Delegate method 1 for returning back to previous view
+-(void)SearchResultsControllerDidCancel:(SearchResultsVC *)controller {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+// Delegate mthod 2 for returning back to previous view
+- (void) SearchResultsViewController:(SearchResultsVC *)controller didChoosePlace:(MKMapItem *)mapItem {
+    
 }
 
 //Performs the search
@@ -88,6 +89,7 @@
         UINavigationController *navigationController = segue.destinationViewController;
         SearchResultsVC *searchVC = [navigationController viewControllers][0];
         searchVC.delegate = self;
+        searchVC.searchResults = self.searchResults;
     }
 }
 
@@ -123,7 +125,7 @@
 //When user hits "Return" on keyboard, it performs search function
 - (IBAction)textFieldReturn:(id)sender {
     [sender resignFirstResponder];
-    //[self performSearch];
+    [self performSearch];
     
 }
 

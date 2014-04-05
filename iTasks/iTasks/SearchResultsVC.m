@@ -8,9 +8,9 @@
 
 #import "SearchResultsVC.h"
 
-@interface SearchResultsVC ()
+@interface SearchResultsVC () <UITableViewDataSource, UITableViewDelegate>
 
-
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -37,16 +37,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.searchResults.count;
 }
-*/
+
+-(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+	return 1;
+}
+
+-(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger cellNum = indexPath.row;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchItem"];
+    MKMapItem *item = [self.searchResults objectAtIndex:cellNum];
+    cell.textLabel.text = item.name;
+    return cell;
+}
 
 -(IBAction)cancelPressed:(id)sender {
     //NSLog(@"Clsing things");
