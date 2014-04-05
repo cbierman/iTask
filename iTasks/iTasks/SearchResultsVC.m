@@ -11,10 +11,17 @@
 @interface SearchResultsVC () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong,nonatomic) NSMutableArray *selectedPlaces;
 
 @end
 
 @implementation SearchResultsVC
+
+- (NSMutableArray *) selectedPlaces {
+    if (!_selectedPlaces)
+        _selectedPlaces = [[NSMutableArray alloc] init];
+    return _selectedPlaces;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,9 +60,31 @@
     return cell;
 }
 
+-(void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //NSLog(@"%i, deselected", indexPath.row);
+    MKMapItem *tempMapItem = [self.searchResults objectAtIndex:indexPath.row];
+    [self.selectedPlaces removeObject:tempMapItem];
+}
+
+// Gets called when a row is selected
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MKMapItem *tempMapItem = [self.searchResults objectAtIndex:indexPath.row];
+    [self.selectedPlaces addObject:tempMapItem];
+}
+
 -(IBAction)cancelPressed:(id)sender {
-    //NSLog(@"Clsing things");
     [self.delegate SearchResultsControllerDidCancel:self];
+}
+
+// User selects which elements he wants to choose,
+// they can choose, 0, 1, or none.
+
+- (IBAction)donePressed:(id)sender {
+    if (self.selectedPlaces.count > 0)
+        [self.delegate SearchResultsViewController:self didChoosePlace:self.selectedPlaces];
+    // If nothing is selected, pretend its a cancel
+    else
+        [self.delegate SearchResultsControllerDidCancel:self];
 }
 
 

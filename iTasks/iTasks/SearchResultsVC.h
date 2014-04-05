@@ -14,7 +14,7 @@
 @protocol searchVCDelegate <NSObject>
 
 - (void)SearchResultsControllerDidCancel:(SearchResultsVC *)controller;
-- (void)SearchResultsViewController:(SearchResultsVC *)controller didChoosePlace:(MKMapItem *)mapItem;
+- (void)SearchResultsViewController:(SearchResultsVC *)controller didChoosePlace:(NSArray *)selectionList;
 
 @end
 
@@ -24,5 +24,6 @@
 @property (strong,nonatomic) NSArray *searchResults;
 
 - (IBAction)cancelPressed:(id)sender;
+- (IBAction)donePressed:(id)sender;
 
 @end

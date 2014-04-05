@@ -8,17 +8,31 @@
 
 #import "AddNewTaskVC.h"
 #import "SearchResultsVC.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface AddNewTaskVC () <searchVCDelegate>
 
 @property (strong,nonatomic) NSMutableArray *searchResults;
 @property (strong,nonatomic) Task *completeTask;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *completingSearchIndicator;
+@property (strong,nonatomic) NSMutableArray *selectedPlaces;
+@property (strong,nonatomic) NSMutableArray *selectedPlacemarks;
 
 @end
 
 @implementation AddNewTaskVC
 
+- (NSMutableArray *) selectedPlacemarks {
+    if (!_selectedPlacemarks)
+        _selectedPlacemarks = [[NSMutableArray alloc] init];
+    return _selectedPlacemarks;
+}
+
+- (NSArray *) selectedPlaces {
+    if (!_selectedPlaces)
+        _selectedPlaces = [[NSMutableArray alloc] init];
+    return _selectedPlaces;
+}
 
 - (NSMutableArray *)searchResults {
     if (!_searchResults) {
@@ -39,8 +53,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 // Delegate mthod 2 for returning back to previous view
-- (void) SearchResultsViewController:(SearchResultsVC *)controller didChoosePlace:(MKMapItem *)mapItem {
-    
+- (void) SearchResultsViewController:(SearchResultsVC *)controller didChoosePlace:(NSMutableArray *)selectionList {
+    self.selectedPlaces = selectionList;
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 //Performs the search
@@ -70,7 +86,7 @@
              [placemarks addObject:item.placemark];
          }
          // just a quick check to see how many returns we are getting
-         NSLog(@"%lu",(unsigned long)placemarks.count);
+         //NSLog(@"%lu",(unsigned long)placemarks.count);
          
          // save results in an instance variable
          self.searchResults = placemarks;
@@ -133,9 +149,17 @@
 - (IBAction)done:(id)sender {
     // we remove all current annotations on map
     [self.mapHandle removeAnnotations:[self.mapHandle annotations]];
+
+    NSMutableArray *placemarks = [NSMutableArray array];
+    for (MKMapItem *item in (NSArray *)self.selectedPlaces) {
+        NSLog(@"%@",item.name);
+        [placemarks addObject:item];
+    }
+
+    
     // and if we have search items, pertaining to our search, we update map annotations
-    if (self.mapHandle.annotations.count > 0)
-        [self.mapHandle addAnnotations:self.searchResults];
+    if (placemarks.count > 0)
+        [self.mapHandle addAnnotations:placemarks];
     
     // Then mimic a cancel because we have yet to add an item
     [self.delegate AddNewTaskViewControllerDidCancel:self];
