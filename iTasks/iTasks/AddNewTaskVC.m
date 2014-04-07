@@ -12,12 +12,17 @@
 
 @interface AddNewTaskVC () <searchVCDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextField *taskName;
 @property (strong,nonatomic) NSMutableArray *searchResults;
 @property (strong,nonatomic) Task *completeTask;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *completingSearchIndicator;
 @property (strong,nonatomic) NSMutableArray *selectedPlaces;
 @property (strong,nonatomic) NSMutableArray *selectedPlacemarks;
-
+@property (weak, nonatomic) IBOutlet UITextField *taskDescription;
+@property (weak, nonatomic) IBOutlet UITextField *monthField;
+@property (weak, nonatomic) IBOutlet UITextField *dayField;
+@property (weak, nonatomic) IBOutlet UITextField *yearField;
+@property (strong,nonatomic) NSDate *date;
 @end
 
 @implementation AddNewTaskVC
@@ -98,6 +103,13 @@
          
         
      }];
+}
+
+-(void) createDateFromTexFieldWithDay: (NSString *)day withMonth: (NSString *)month withYear:(NSString *)year  {
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    [components setDay:[day integerValue]];
+    [components setMonth:[month integerValue]];
+    [components setYear:[year integerValue]];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
