@@ -35,4 +35,22 @@
     [self.otherLocations removeObject:(__bridge id)(location)];
 }
 
+-(NSMutableDictionary *) convertTaskToDictionary {
+    NSMutableDictionary *taskDict = [[NSMutableDictionary alloc] init];
+    NSMutableArray *locations = [[NSMutableArray alloc] initWithArray:[self convertLocationsToValues:self.otherLocations]];
+    [taskDict setObject:self.title forKey:@"Title"];
+    [taskDict setObject:self.description forKey:@"Description"];
+    [taskDict setObject:locations forKey:@"Locations"];
+    return taskDict;
+}
+
+-(NSMutableArray *) convertLocationsToValues: (NSMutableArray *) locations {
+    NSMutableArray *values = [[NSMutableArray alloc] init];
+    for (int i = 0; i < locations.count; i++) {
+        CLLocationCoordinate2D *currentLocation = (__bridge CLLocationCoordinate2D *)(locations[i]);
+        [values addObject:[NSValue valueWithMKCoordinate:*currentLocation]];
+    }
+    return values;
+}
+
 @end

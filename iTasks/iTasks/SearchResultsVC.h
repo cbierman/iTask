@@ -15,7 +15,6 @@
 
 - (void)SearchResultsControllerDidCancel:(SearchResultsVC *)controller;
 - (void)SearchResultsViewController:(SearchResultsVC *)controller didChoosePlace:(NSArray *)selectionList;
-
 @end
 
 @interface SearchResultsVC : UIViewController

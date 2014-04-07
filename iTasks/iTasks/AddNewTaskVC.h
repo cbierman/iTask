@@ -16,6 +16,7 @@
 @protocol AddNewTaskVCDelegate <NSObject>
 - (void)AddNewTaskViewControllerDidCancel:(AddNewTaskVC *)controller;
 - (void)AddNewTaskViewController:(AddNewTaskVC *)controller didAddTask:(Task *)newTask;
+
 @end
 
 @interface AddNewTaskVC : UIViewController <searchVCDelegate>
