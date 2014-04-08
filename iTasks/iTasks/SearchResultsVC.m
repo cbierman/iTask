@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *selectedPlaces;
-@property (strong, nonatomic)
+//@property (strong, nonatomic)
 
 
 @end
