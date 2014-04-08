@@ -22,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *monthField;
 @property (weak, nonatomic) IBOutlet UITextField *dayField;
 @property (weak, nonatomic) IBOutlet UITextField *yearField;
-@property (strong,nonatomic) NSDate *date;
 @end
 
 @implementation AddNewTaskVC
@@ -105,11 +104,13 @@
      }];
 }
 
--(void) createDateFromTexFieldWithDay: (NSString *)day withMonth: (NSString *)month withYear:(NSString *)year  {
+-(NSDate *) createDateFromTexFieldWithDay: (NSString *)day withMonth: (NSString *)month withYear:(NSString *)year  {
     NSDateComponents *components = [[NSDateComponents alloc] init];
     [components setDay:[day integerValue]];
     [components setMonth:[month integerValue]];
     [components setYear:[year integerValue]];
+    NSDate *date = [components date];
+    return date;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
