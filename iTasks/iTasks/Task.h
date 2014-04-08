@@ -18,7 +18,7 @@
 @property (nonatomic) CLLocationCoordinate2D *location;
 @property (nonatomic) CLLocation *testLocal;
 @property (nonatomic, strong) NSMutableArray *otherLocations;
-@property (nonatomic, strong) 
+//@property (nonatomic, strong)
 @property BOOL isSpecific;
 
 -(void) addLocationToList:(CLLocationCoordinate2D *)location;
