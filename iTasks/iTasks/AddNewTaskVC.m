@@ -71,6 +71,7 @@
     self.completingSearchIndicator.hidesWhenStopped = YES;
     self.doneButton.enabled = NO;
     self.cancelButton.enabled = NO;
+    self.searchButton.enabled = NO;
     
     // Create a search request
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
@@ -100,8 +101,7 @@
          [self.completingSearchIndicator stopAnimating];
          self.doneButton.enabled = YES;
          self.cancelButton.enabled = YES;
-         
-        
+         self.searchButton.enabled = YES;
      }];
 }
 

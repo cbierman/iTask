@@ -186,6 +186,7 @@
                         <outlet property="dayField" destination="sBx-O2-9Ip" id="RqH-qN-hWd"/>
                         <outlet property="doneButton" destination="U3I-3b-fS1" id="cnu-GH-AIR"/>
                         <outlet property="monthField" destination="gUR-OQ-KXy" id="mqi-91-Sd9"/>
+                        <outlet property="searchButton" destination="kwy-lD-N8U" id="ocS-y1-N8n"/>
                         <outlet property="searchText" destination="fnb-zo-vhb" id="eig-n0-IuK"/>
                         <outlet property="taskDescription" destination="jeV-Li-TY0" id="JyG-f3-eXf"/>
                         <outlet property="taskName" destination="5gU-wq-DNR" id="BYI-l6-GHZ"/>
