@@ -97,7 +97,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (void)viewWillAppear:(BOOL)animated {
-    [self.tableView.reloadData];
+    [self.tableView reloadData];
     if (self.tasksList.count != 0) {
         NSLog(@"%i, asdfasdfaasdfadsfa", self.tasksList.count);
         Task *temp = [self.tasksList objectAtIndex:0];
