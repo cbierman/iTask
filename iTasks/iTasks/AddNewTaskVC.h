@@ -28,6 +28,7 @@
 @property (nonatomic, weak) id<AddNewTaskVCDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
+@property (strong, nonatomic) IBOutlet UIButton *searchButton;
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)textFieldReturn:(id)sender;

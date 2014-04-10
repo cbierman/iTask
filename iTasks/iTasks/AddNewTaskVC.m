@@ -12,12 +12,16 @@
 
 @interface AddNewTaskVC () <searchVCDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextField *taskName;
 @property (strong,nonatomic) NSMutableArray *searchResults;
 @property (strong,nonatomic) Task *completeTask;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *completingSearchIndicator;
 @property (strong,nonatomic) NSMutableArray *selectedPlaces;
 @property (strong,nonatomic) NSMutableArray *selectedPlacemarks;
-
+@property (weak, nonatomic) IBOutlet UITextField *taskDescription;
+@property (weak, nonatomic) IBOutlet UITextField *monthField;
+@property (weak, nonatomic) IBOutlet UITextField *dayField;
+@property (weak, nonatomic) IBOutlet UITextField *yearField;
 @end
 
 @implementation AddNewTaskVC
@@ -66,6 +70,7 @@
     self.completingSearchIndicator.hidesWhenStopped = YES;
     self.doneButton.enabled = NO;
     self.cancelButton.enabled = NO;
+    self.searchButton.enabled = NO;
     
     // Create a search request
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
@@ -95,9 +100,17 @@
          [self.completingSearchIndicator stopAnimating];
          self.doneButton.enabled = YES;
          self.cancelButton.enabled = YES;
-         
-        
+         self.searchButton.enabled = YES;
      }];
+}
+
+-(NSDate *) createDateFromTexFieldWithDay: (NSString *)day withMonth: (NSString *)month withYear:(NSString *)year  {
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    [components setDay:[day integerValue]];
+    [components setMonth:[month integerValue]];
+    [components setYear:[year integerValue]];
+    NSDate *date = [components date];
+    return date;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

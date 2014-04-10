@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "AddNewTaskVC.h"
 #import "Task.h"
+#import "TKSTaskPropertiesViewController.h"
 
 @interface TKSViewController () <UITableViewDataSource, UITableViewDelegate, AddNewTaskVCDelegate>
 
@@ -36,6 +37,10 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    int index = indexPath.row;
+    
+}
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addNewTask"]) {
         //NSLog(@"Adding new task! Hopefully");
@@ -43,6 +48,11 @@
         AddNewTaskVC *addNewTaskVC = [navigationController viewControllers][0];
         addNewTaskVC.mapHandle = _mapView;
         addNewTaskVC.delegate = self;
+    }
+    
+    if ([segue.identifier isEqualToString:@"seeTaskProperties"]) {
+        UINavigationController *navController = segue.destinationViewController;
+        TKSTaskPropertiesViewController *taskProperties = [navController viewControllers][0];
     }
 }
 
