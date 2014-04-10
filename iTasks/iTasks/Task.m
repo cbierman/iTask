@@ -12,13 +12,6 @@
 
 @implementation Task
 
-- (void) setTitle:(NSString *)title {
-    self.title = title;
-}
-
-- (void) setDescription:(NSString *)description {
-    self.description = description;
-}
 
 - (NSMutableArray *) otherLocations {
     if (!_otherLocations) {

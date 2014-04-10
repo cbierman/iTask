@@ -14,8 +14,7 @@
 
 @interface TKSViewController () <UITableViewDataSource, UITableViewDelegate, AddNewTaskVCDelegate>
 
-@property (strong, nonatomic) IBOutlet UITableView *mapItems;
-@property (strong,nonatomic) NSMutableArray *tasksList;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -29,16 +28,22 @@
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    NSLog(@"table row thing");
+    return self.tasksList.count;
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"making shit");
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mapItem"];
+    Task *task = [self.tasksList objectAtIndex:indexPath.row];
+    cell.textLabel.text = task.title;
+    cell.detailTextLabel.text = task.description;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    int index = indexPath.row;
+    NSLog(@"another thing");
+    //int index = indexPath.row;
     
 }
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -47,13 +52,14 @@
         UINavigationController *navigationController = segue.destinationViewController;
         AddNewTaskVC *addNewTaskVC = [navigationController viewControllers][0];
         addNewTaskVC.mapHandle = _mapView;
+        addNewTaskVC.delegateTasksList = self.tasksList;
         addNewTaskVC.delegate = self;
     }
     
-    if ([segue.identifier isEqualToString:@"seeTaskProperties"]) {
-        UINavigationController *navController = segue.destinationViewController;
-        TKSTaskPropertiesViewController *taskProperties = [navController viewControllers][0];
-    }
+    //if ([segue.identifier isEqualToString:@"seeTaskProperties"]) {
+    //    UINavigationController *navController = segue.destinationViewController;
+    //    TKSTaskPropertiesViewController *taskProperties = [navController viewControllers][0];
+    //}
 }
 
 -(void)AddNewTaskViewControllerDidCancel:(AddNewTaskVC *)controller {
@@ -81,12 +87,22 @@
     _mapView.showsUserLocation = YES;
     _mapView.delegate = self;
     [self zoomOnUserLocation];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tableView.reloadData];
+    if (self.tasksList.count != 0) {
+        NSLog(@"%i, asdfasdfaasdfadsfa", self.tasksList.count);
+        Task *temp = [self.tasksList objectAtIndex:0];
+        NSLog(@"%@, task name", temp.title );
+    }
 }
 
 @end
