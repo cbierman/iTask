@@ -12,6 +12,7 @@
 
 @interface AddNewTaskVC () <searchVCDelegate>
 
+
 @property (weak, nonatomic) IBOutlet UITextField *taskName;
 @property (strong,nonatomic) NSMutableArray *searchResults;
 @property (strong,nonatomic) Task *completeTask;
@@ -160,6 +161,13 @@
 
 // When user hits done...
 - (IBAction)done:(id)sender {
+    
+    Task *newTask = [[Task alloc] init];
+    newTask.title = self.taskName.text;
+    newTask.description = self.taskDescription.text;
+    newTask.otherLocations = self.selectedPlaces;
+    [self.delegateTasksList addObject:newTask];
+    
     // we remove all current annotations on map
     [self.mapHandle removeAnnotations:[self.mapHandle annotations]];
 

@@ -25,6 +25,8 @@
 
 // A handle on our map view... passed by delegate
 @property (strong,nonatomic) MKMapView *mapHandle;
+@property (strong,nonatomic) NSMutableArray *delegateTasksList;
+
 @property (nonatomic, weak) id<AddNewTaskVCDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
