@@ -28,12 +28,10 @@
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"table row thing");
     return self.tasksList.count;
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"making shit");
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mapItem"];
     Task *task = [self.tasksList objectAtIndex:indexPath.row];
     cell.textLabel.text = task.title;
@@ -42,7 +40,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"another thing");
     //int index = indexPath.row;
     
 }
@@ -96,13 +93,21 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void) displayTasksInMap {
+    for (Task *task in self.tasksList) {
+        [self.mapView addAnnotations:task.otherLocations];
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [self.tableView reloadData];
-    if (self.tasksList.count != 0) {
-        NSLog(@"%i, asdfasdfaasdfadsfa", self.tasksList.count);
-        Task *temp = [self.tasksList objectAtIndex:0];
-        NSLog(@"%@, task name", temp.title );
-    }
+    [self displayTasksInMap];
+    //if (self.tasksList.count != 0) {
+    //    NSLog(@"%i, asdfasdfaasdfadsfa", self.tasksList.count);
+    //    Task *temp = [self.tasksList objectAtIndex:0];
+    //    NSLog(@"%@, task name", temp.title );
+    //}
 }
 
 @end

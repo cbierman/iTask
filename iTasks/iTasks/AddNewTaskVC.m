@@ -18,7 +18,7 @@
 @property (strong,nonatomic) Task *completeTask;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *completingSearchIndicator;
 @property (strong,nonatomic) NSMutableArray *selectedPlaces;
-@property (strong,nonatomic) NSMutableArray *selectedPlacemarks;
+//@property (strong,nonatomic) NSMutableArray *selectedPlacemarks;
 @property (weak, nonatomic) IBOutlet UITextField *taskDescription;
 @property (weak, nonatomic) IBOutlet UITextField *monthField;
 @property (weak, nonatomic) IBOutlet UITextField *dayField;
@@ -27,11 +27,11 @@
 
 @implementation AddNewTaskVC
 
-- (NSMutableArray *) selectedPlacemarks {
-    if (!_selectedPlacemarks)
-        _selectedPlacemarks = [[NSMutableArray alloc] init];
-    return _selectedPlacemarks;
-}
+//- (NSMutableArray *) selectedPlacemarks {
+//    if (!_selectedPlacemarks)
+//        _selectedPlacemarks = [[NSMutableArray alloc] init];
+//    return _selectedPlacemarks;
+//}
 
 - (NSArray *) selectedPlaces {
     if (!_selectedPlaces)
@@ -173,14 +173,14 @@
 
     NSMutableArray *placemarks = [NSMutableArray array];
     for (MKMapItem *item in (NSArray *)self.selectedPlaces) {
-        NSLog(@"%@",item.name);
+        //NSLog(@"%@",item.name);
         [placemarks addObject:item];
     }
 
     
     // and if we have search items, pertaining to our search, we update map annotations
-    if (placemarks.count > 0)
-        [self.mapHandle addAnnotations:placemarks];
+    //if (placemarks.count > 0)
+    //    [self.mapHandle addAnnotations:placemarks];
     
     // Then mimic a cancel because we have yet to add an item
     [self.delegate AddNewTaskViewControllerDidCancel:self];
