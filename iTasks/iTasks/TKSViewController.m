@@ -12,10 +12,10 @@
 #import "Task.h"
 #import "TKSTaskPropertiesViewController.h"
 
-@interface TKSViewController () <UITableViewDataSource, UITableViewDelegate, AddNewTaskVCDelegate>
+@interface TKSViewController () <UITableViewDataSource, UITableViewDelegate, AddNewTaskVCDelegate, TaskPropertiesViewControllerDelagate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
+@property (strong, nonatomic) NSMutableArray *allTasks;
 @end
 
 @implementation TKSViewController
@@ -25,6 +25,13 @@
         _tasksList = [[NSMutableArray alloc] init];
     }
     return _tasksList;
+}
+
+-(NSMutableArray *) allTasks {
+    if (!_allTasks) {
+        _allTasks = [[NSMutableArray alloc] init];
+    }
+    return _allTasks;
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -40,7 +47,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //int index = indexPath.row;
+    NSLog(@"performing segue, son");
+    
+    
+    [self performSegueWithIdentifier:@"seeTaskProperties" sender: indexPath];
     
 }
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -53,14 +63,30 @@
         addNewTaskVC.delegate = self;
     }
     
-    //if ([segue.identifier isEqualToString:@"seeTaskProperties"]) {
-    //    UINavigationController *navController = segue.destinationViewController;
-    //    TKSTaskPropertiesViewController *taskProperties = [navController viewControllers][0];
-    //}
+    if ([segue.identifier isEqualToString:@"seeTaskProperties"]) {
+        UINavigationController *navController = segue.destinationViewController;
+        TKSTaskPropertiesViewController *taskProperties = [navController viewControllers][0];
+        
+        NSIndexPath *indexPath = (NSIndexPath *) sender;
+        NSInteger selectedCellNumber = indexPath.row;
+        NSLog(@"Index Row: %d", selectedCellNumber);
+        
+        NSDictionary *taskDict = [self.allTasks objectAtIndex:selectedCellNumber];
+        NSLog(@"%@", taskDict);
+        
+        taskProperties.titleLabel.text = [taskDict objectForKey:@"Title"];
+        taskProperties.descriptionLabel.text = [taskDict objectForKey:@"Description"];
+        taskProperties.delegate = self;
+    }
 }
 
 -(void)AddNewTaskViewControllerDidCancel:(AddNewTaskVC *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)TaskPropertiesViewControllerDidCancel:(id)controller {
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 - (void) AddNewTaskViewController:(AddNewTaskVC *)controller didAddTask:(Task *)newTask {
@@ -86,7 +112,12 @@
     [self zoomOnUserLocation];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    
+    
+
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -101,13 +132,11 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    NSMutableArray *tasksList = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allTasks"] mutableCopy];
+    self.allTasks = tasksList;
     [self.tableView reloadData];
     [self displayTasksInMap];
-    //if (self.tasksList.count != 0) {
-    //    NSLog(@"%i, asdfasdfaasdfadsfa", self.tasksList.count);
-    //    Task *temp = [self.tasksList objectAtIndex:0];
-    //    NSLog(@"%@, task name", temp.title );
-    //}
+
 }
 
 @end

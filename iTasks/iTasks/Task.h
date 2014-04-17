@@ -15,13 +15,12 @@
 @property (strong,nonatomic) NSString *title;
 @property (strong,nonatomic) NSString *description;
 @property (strong,nonatomic) NSString *address;
-@property (nonatomic) CLLocationCoordinate2D *location;
+@property (nonatomic) CLLocationCoordinate2D location;
 @property (nonatomic) CLLocation *testLocal;
 @property (nonatomic, strong) NSMutableArray *otherLocations;
-//@property (nonatomic, strong)
 @property BOOL isSpecific;
 
--(void) addLocationToList:(CLLocationCoordinate2D *)location;
--(void) removeLocationFromList:(CLLocationCoordinate2D *)location;
+-(void) addLocationToList:(MKMapItem *)location;
+-(NSMutableDictionary *) convertTaskToDictionary;
 
 @end

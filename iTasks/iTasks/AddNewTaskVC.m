@@ -15,7 +15,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *taskName;
 @property (strong,nonatomic) NSMutableArray *searchResults;
-@property (strong,nonatomic) Task *completeTask;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *completingSearchIndicator;
 @property (strong,nonatomic) NSMutableArray *selectedPlaces;
 //@property (strong,nonatomic) NSMutableArray *selectedPlacemarks;
@@ -161,17 +160,33 @@
 
 // When user hits done...
 - (IBAction)done:(id)sender {
-    
+    // Create a new task, adding the info from the text fields
     Task *newTask = [[Task alloc] init];
     newTask.title = self.taskName.text;
     newTask.description = self.taskDescription.text;
-    newTask.otherLocations = self.selectedPlaces;
+    newTask.otherLocations = [self.selectedPlaces mutableCopy];
     [self.delegateTasksList addObject:newTask];
+    
+    // Convert the task to a dictionary
+    NSDictionary *taskDict = [NSDictionary dictionaryWithDictionary:[newTask convertTaskToDictionary]];
+    
+    // Load NSUserDefaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    // Get our array of task dictionaries from NSUserDefaults
+    NSMutableArray *allTasks = [[defaults objectForKey:@"allTasks"] mutableCopy];
+    // Add the newly added task to all the tasks
+    [allTasks addObject:taskDict];
+    // Put all the tasks back into NSUserDefaults
+    [defaults setObject:[NSArray arrayWithArray:allTasks] forKey:@"allTasks"];
+    // Synchronize
+    [defaults synchronize];
+    NSLog(@"sycnronized defaults");
     
     // we remove all current annotations on map
     [self.mapHandle removeAnnotations:[self.mapHandle annotations]];
 
     NSMutableArray *placemarks = [NSMutableArray array];
+    
     for (MKMapItem *item in (NSArray *)self.selectedPlaces) {
         //NSLog(@"%@",item.name);
         [placemarks addObject:item];
@@ -182,7 +197,11 @@
     //if (placemarks.count > 0)
     //    [self.mapHandle addAnnotations:placemarks];
     
+    if (placemarks.count > 0) {
+        [self.mapHandle addAnnotations:placemarks];
+    }
     // Then mimic a cancel because we have yet to add an item
     [self.delegate AddNewTaskViewControllerDidCancel:self];
+    
 }
 @end

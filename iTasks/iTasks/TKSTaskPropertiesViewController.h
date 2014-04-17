@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class TKSTaskPropertiesViewController;
+
+@protocol TaskPropertiesViewControllerDelagate <NSObject>
+
+-(void) TaskPropertiesViewControllerDidCancel:(TKSTaskPropertiesViewController *) controller;
+
+@end
+
 @interface TKSTaskPropertiesViewController : UIViewController
+@property (nonatomic, weak) id<TaskPropertiesViewControllerDelagate> delegate;
+
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;

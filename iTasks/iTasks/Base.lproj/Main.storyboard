@@ -242,9 +242,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6Uf-g6-FCE">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="0wN-HG-WhD"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="6Uf-g6-FCE"/>
                     <connections>
                         <outlet property="dateLabel" destination="05O-kz-Bm2" id="ca8-Lf-yNf"/>
                         <outlet property="descriptionLabel" destination="jyo-AU-yVK" id="0Rx-ng-kZJ"/>
