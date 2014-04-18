@@ -132,6 +132,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="taskNameDone:" destination="ln3-eM-XIp" eventType="editingDidEndOnExit" id="QNy-XA-r2t"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Task Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xST-6N-QD3">
                                 <rect key="frame" x="20" y="87" width="90" height="21"/>
@@ -151,6 +154,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="desciptionFieldDidBeginEditing:" destination="ln3-eM-XIp" eventType="editingDidBegin" id="dh5-Pb-Pux"/>
+                                    <action selector="textFieldDidReturn:" destination="ln3-eM-XIp" eventType="editingDidEndOnExit" id="ePo-w7-F2I"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Expiration Date: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEz-5e-OOH">
                                 <rect key="frame" x="20" y="296" width="128" height="21"/>
@@ -163,18 +170,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="datesEditingDidBegin:" destination="ln3-eM-XIp" eventType="editingDidBegin" id="Mgb-ZD-JPn"/>
+                                    <action selector="datesReturnPressed:" destination="ln3-eM-XIp" eventType="editingDidEndOnExit" id="Rem-yq-ONZ"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="DD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sBx-O2-9Ip">
                                 <rect key="frame" x="76" y="325" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="datesEditingDidBegin:" destination="ln3-eM-XIp" eventType="editingDidBegin" id="Nng-Ig-klD"/>
+                                    <action selector="datesReturnPressed:" destination="ln3-eM-XIp" eventType="editingDidEndOnExit" id="SEq-Ud-qna"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="YYYY" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n77-hN-YfG">
                                 <rect key="frame" x="124" y="325" width="91" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="datesEditingDidBegin:" destination="ln3-eM-XIp" eventType="editingDidBegin" id="8XF-qX-pq3"/>
+                                    <action selector="datesReturnPressed:" destination="ln3-eM-XIp" eventType="editingDidEndOnExit" id="bsx-TC-IUI"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

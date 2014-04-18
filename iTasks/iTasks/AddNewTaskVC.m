@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *monthField;
 @property (weak, nonatomic) IBOutlet UITextField *dayField;
 @property (weak, nonatomic) IBOutlet UITextField *yearField;
+@property (nonatomic) CGRect originalCenter;
 @end
 
 @implementation AddNewTaskVC
@@ -136,6 +137,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.originalCenter = self.view.frame;
     self.completingSearchIndicator.hidesWhenStopped = YES;
 
 }
@@ -155,8 +157,41 @@
 - (IBAction)textFieldReturn:(id)sender {
     [sender resignFirstResponder];
     [self performSearch];
-    
 }
+- (IBAction)textFieldDidReturn:(id)sender {
+    [sender resignFirstResponder];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    self.view.frame = self.originalCenter;
+    [UIView commitAnimations];
+}
+- (IBAction)taskNameDone:(id)sender {
+    [sender resignFirstResponder];
+}
+- (IBAction)desciptionFieldDidBeginEditing:(id)sender {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    self.view.frame = CGRectMake(0,-50,320,400);
+    [UIView commitAnimations];
+}
+
+// Text fields for the date to control view shifting :-)
+- (IBAction)datesEditingDidBegin:(id)sender {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    self.view.frame = CGRectMake(0,-90,320,400);
+    [UIView commitAnimations];
+}
+- (IBAction)datesReturnPressed:(id)sender {
+    [sender resignFirstResponder];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    self.view.frame = self.originalCenter;
+    [UIView commitAnimations];
+}
+
+
+
 
 // When user hits done...
 - (IBAction)done:(id)sender {
@@ -168,19 +203,19 @@
     [self.delegateTasksList addObject:newTask];
     
     // Convert the task to a dictionary
-    NSDictionary *taskDict = [NSDictionary dictionaryWithDictionary:[newTask convertTaskToDictionary]];
+//    NSDictionary *taskDict = [NSDictionary dictionaryWithDictionary:[newTask convertTaskToDictionary]];
     
-    // Load NSUserDefaults
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    // Get our array of task dictionaries from NSUserDefaults
-    NSMutableArray *allTasks = [[defaults objectForKey:@"allTasks"] mutableCopy];
-    // Add the newly added task to all the tasks
-    [allTasks addObject:taskDict];
-    // Put all the tasks back into NSUserDefaults
-    [defaults setObject:[NSArray arrayWithArray:allTasks] forKey:@"allTasks"];
-    // Synchronize
-    [defaults synchronize];
-    NSLog(@"sycnronized defaults");
+//    // Load NSUserDefaults
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    // Get our array of task dictionaries from NSUserDefaults
+//    NSMutableArray *allTasks = [[defaults objectForKey:@"allTasks"] mutableCopy];
+//    // Add the newly added task to all the tasks
+//    [allTasks addObject:taskDict];
+//    // Put all the tasks back into NSUserDefaults
+//    [defaults setObject:[NSArray arrayWithArray:allTasks] forKey:@"allTasks"];
+//    // Synchronize
+//    [defaults synchronize];
+//    NSLog(@"sycnronized defaults");
     
     // we remove all current annotations on map
     [self.mapHandle removeAnnotations:[self.mapHandle annotations]];
@@ -197,9 +232,9 @@
     //if (placemarks.count > 0)
     //    [self.mapHandle addAnnotations:placemarks];
     
-    if (placemarks.count > 0) {
-        [self.mapHandle addAnnotations:placemarks];
-    }
+    //if (placemarks.count > 0) {
+        //[self.mapHandle addAnnotations:placemarks];
+    //}
     // Then mimic a cancel because we have yet to add an item
     [self.delegate AddNewTaskViewControllerDidCancel:self];
     

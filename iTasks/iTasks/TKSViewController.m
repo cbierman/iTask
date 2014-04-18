@@ -69,7 +69,7 @@
         
         NSIndexPath *indexPath = (NSIndexPath *) sender;
         NSInteger selectedCellNumber = indexPath.row;
-        NSLog(@"Index Row: %d", selectedCellNumber);
+        NSLog(@"Index Row: %ld", (long)selectedCellNumber);
         
         NSDictionary *taskDict = [self.allTasks objectAtIndex:selectedCellNumber];
         NSLog(@"%@", taskDict);
@@ -112,10 +112,6 @@
     [self zoomOnUserLocation];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    
-    
-
 }
 
 
@@ -136,7 +132,6 @@
     self.allTasks = tasksList;
     [self.tableView reloadData];
     [self displayTasksInMap];
-
 }
 
 @end
