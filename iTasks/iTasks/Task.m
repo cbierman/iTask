@@ -13,9 +13,7 @@
 @implementation Task
 
 
-- (void) setExpirationDate:(NSDate *)taskExpirationDate {
-    self.taskExpirationDate = taskExpirationDate;
-}
+
 
 - (NSMutableArray *) otherLocations {
     if (!_otherLocations) {
