@@ -13,6 +13,10 @@
 @implementation Task
 
 
+- (void) setExpirationDate:(NSDate *)taskExpirationDate {
+    self.taskExpirationDate = taskExpirationDate;
+}
+
 - (NSMutableArray *) otherLocations {
     if (!_otherLocations) {
         _otherLocations = [[NSMutableArray alloc] init];
@@ -36,6 +40,7 @@
     [taskDict setObject:self.title forKey:@"Title"];
     [taskDict setObject:self.description forKey:@"Description"];
     [taskDict setObject:locations forKey:@"Locations"];
+    [taskDict setObject:self.taskExpirationDate forKey:@"Expiration Date"];
     return taskDict;
 }
 
