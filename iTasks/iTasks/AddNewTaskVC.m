@@ -224,6 +224,10 @@
     
     for (MKMapItem *item in (NSArray *)self.selectedPlaces) {
         //NSLog(@"%@",item.name);
+        //CLLocationCoordinate2D coord = item.placemark.coordinate;
+        //NSLog(@"hello");
+        //NSString *lat = [[NSString alloc] initWithFormat:@"%f", coord.latitude];
+        //NSLog(@"latitude = %@",lat);
         [placemarks addObject:item];
     }
 
