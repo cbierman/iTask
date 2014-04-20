@@ -61,7 +61,6 @@
 - (void) SearchResultsViewController:(SearchResultsVC *)controller didChoosePlace:(NSMutableArray *)selectionList {
     self.selectedPlaces = selectionList;
     [self dismissViewControllerAnimated:YES completion:nil];
-
 }
 
 //Performs the search
@@ -91,9 +90,6 @@
          for (MKMapItem *item in response.mapItems) {
              [placemarks addObject:item.placemark];
          }
-         // just a quick check to see how many returns we are getting
-         //NSLog(@"%lu",(unsigned long)placemarks.count);
-         
          // save results in an instance variable
          self.searchResults = placemarks;
          
@@ -190,9 +186,6 @@
     [UIView commitAnimations];
 }
 
-
-
-
 // When user hits done...
 - (IBAction)done:(id)sender {
     // Create a new task, adding the info from the text fields
@@ -223,22 +216,8 @@
     NSMutableArray *placemarks = [NSMutableArray array];
     
     for (MKMapItem *item in (NSArray *)self.selectedPlaces) {
-        //NSLog(@"%@",item.name);
-        //CLLocationCoordinate2D coord = item.placemark.coordinate;
-        //NSLog(@"hello");
-        //NSString *lat = [[NSString alloc] initWithFormat:@"%f", coord.latitude];
-        //NSLog(@"latitude = %@",lat);
         [placemarks addObject:item];
     }
-
-    
-    // and if we have search items, pertaining to our search, we update map annotations
-    //if (placemarks.count > 0)
-    //    [self.mapHandle addAnnotations:placemarks];
-    
-    //if (placemarks.count > 0) {
-        //[self.mapHandle addAnnotations:placemarks];
-    //}
     // Then mimic a cancel because we have yet to add an item
     [self.delegate AddNewTaskViewControllerDidCancel:self];
     
