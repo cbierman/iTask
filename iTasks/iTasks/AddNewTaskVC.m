@@ -215,7 +215,10 @@
 
     NSMutableArray *placemarks = [NSMutableArray array];
     
-    for (MKMapItem *item in (NSArray *)self.selectedPlaces) {
+    for (MKPlacemark *item in (NSArray *)self.selectedPlaces) {
+        CLLocationCoordinate2D coords = item.coordinate;
+        NSString *coordinateString = [NSString stringWithFormat:@"%f", coords.latitude];
+        NSLog(@"%@",coordinateString);
         [placemarks addObject:item];
     }
     // Then mimic a cancel because we have yet to add an item
