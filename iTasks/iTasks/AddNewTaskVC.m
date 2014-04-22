@@ -215,6 +215,7 @@
 
     NSMutableArray *placemarks = [NSMutableArray array];
     
+    // Prints the latitude of the object we saved
     for (MKPlacemark *item in (NSArray *)self.selectedPlaces) {
         CLLocationCoordinate2D coords = item.coordinate;
         NSString *coordinateString = [NSString stringWithFormat:@"%f", coords.latitude];
