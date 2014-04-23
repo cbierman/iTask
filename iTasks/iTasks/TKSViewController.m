@@ -112,6 +112,27 @@
     [self zoomOnUserLocation];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    NSMutableArray *tasksList = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allTasks"] mutableCopy];
+    
+    NSLog(@"%@", tasksList);
+    if (tasksList.count > 0) {
+        self.allTasks = [NSMutableArray arrayWithArray:tasksList];
+        for (NSDictionary *currentTask in self.allTasks) {
+            Task *newTask = [[Task alloc] init];
+            newTask.title = [currentTask objectForKey:@"Title"];
+            newTask.description = [currentTask objectForKey:@"Description"];
+            NSArray *currentLocations = [currentTask objectForKey:@"Locations"];
+            for (NSDictionary *locationsDict in currentLocations) {
+                double latitude = [[locationsDict objectForKey:@"Latitude"] doubleValue];
+                double longitude = [[locationsDict objectForKey:@"Longitude"] doubleValue];
+                CLLocationCoordinate2D currentCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+                MKPlacemark *currentPlacemark = [[MKPlacemark alloc] initWithCoordinate:currentCoordinate addressDictionary:nil];
+                MKMapItem *currentMapItem = [[MKMapItem alloc] initWithPlacemark:currentPlacemark];
+                [newTask.otherLocations addObject:currentMapItem];
+            }
+        }
+    }
+    
 }
 
 
@@ -130,8 +151,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSMutableArray *tasksList = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allTasks"] mutableCopy];
-    self.allTasks = tasksList;
+    
     [self.tableView reloadData];
     [self displayTasksInMap];
 }

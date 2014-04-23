@@ -196,19 +196,19 @@
     [self.delegateTasksList addObject:newTask];
     
     // Convert the task to a dictionary
-//    NSDictionary *taskDict = [NSDictionary dictionaryWithDictionary:[newTask convertTaskToDictionary]];
+    NSDictionary *taskDict = [NSDictionary dictionaryWithDictionary:[newTask convertTaskToDictionary]];
     
-//    // Load NSUserDefaults
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    // Get our array of task dictionaries from NSUserDefaults
-//    NSMutableArray *allTasks = [[defaults objectForKey:@"allTasks"] mutableCopy];
-//    // Add the newly added task to all the tasks
-//    [allTasks addObject:taskDict];
-//    // Put all the tasks back into NSUserDefaults
-//    [defaults setObject:[NSArray arrayWithArray:allTasks] forKey:@"allTasks"];
-//    // Synchronize
-//    [defaults synchronize];
-//    NSLog(@"sycnronized defaults");
+    // Load NSUserDefaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    // Get our array of task dictionaries from NSUserDefaults
+    NSMutableArray *allTasks = [[defaults objectForKey:@"allTasks"] mutableCopy];
+    // Add the newly added task to all the tasks
+    [allTasks addObject:taskDict];
+    // Put all the tasks back into NSUserDefaults
+    [defaults setObject:[NSArray arrayWithArray:allTasks] forKey:@"allTasks"];
+    // Synchronize
+    [defaults synchronize];
+    NSLog(@"sycnronized defaults");
     
     // we remove all current annotations on map
     [self.mapHandle removeAnnotations:[self.mapHandle annotations]];
@@ -220,7 +220,6 @@
         MKPlacemark *thing = item.placemark;
         CLLocationCoordinate2D coords = thing.coordinate;
         NSString *coordinateString = [NSString stringWithFormat:@"%f", coords.latitude];
-        NSLog(@"%@",coordinateString);
         [placemarks addObject:item];
     }
     // Then mimic a cancel because we have yet to add an item

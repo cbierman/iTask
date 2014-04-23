@@ -38,7 +38,7 @@
     [taskDict setObject:self.title forKey:@"Title"];
     [taskDict setObject:self.description forKey:@"Description"];
     [taskDict setObject:locations forKey:@"Locations"];
-    [taskDict setObject:self.taskExpirationDate forKey:@"Expiration Date"];
+//    [taskDict setObject:self.taskExpirationDate forKey:@"Expiration Date"];
     return taskDict;
 }
 
@@ -48,23 +48,29 @@
     
     for (int i = 0; i < locations.count; i++) {
         MKMapItem *tempMapItem = [locations objectAtIndex:i];
+        NSString *currentName = [tempMapItem name];
         // Get the placemark
-        NSLog(@"Map Item: %@", tempMapItem);
-
-//        MKPlacemark *tempPlaceMark = tempMapItem.placemark;
-//        NSLog(@"Placemark: %@", tempPlaceMark);
+        MKPlacemark *tempPlaceMark = tempMapItem.placemark;
+        NSLog(@"Placemark: %@", tempPlaceMark);
         // Extract Latitude and Longitude from the placemark's address dictionary
-        //NSString *latitude = [[tempPlaceMark addressDictionary] objectForKey:@"latitude"];
-        //NSString *longitude = [[tempPlaceMark addressDictionary] objectForKey:@"longitude"];
+        CLLocationCoordinate2D tempCoordinates = tempPlaceMark.coordinate;
+        NSString *latitude = [NSString stringWithFormat:@"%f", tempCoordinates.latitude];
+        NSString *longitude = [NSString stringWithFormat:@"%f", tempCoordinates.longitude];
+        // Store them in a dictionary
         
-//        NSLog(@"Latitude is : %@", latitude);
-//        NSLog(@"Longitude is : %@", longitude);
-//        // Store them in an array
-//        NSArray *tempArray = [[NSArray alloc] initWithObjects:latitude, longitude, nil];
-//        
-//        [values addObject:tempArray];
+        NSLog(@"Latitude : %@", latitude);
+        NSLog(@"Longitude : %@", longitude);
+        NSLog(@"Name : %@", currentName);
+        
+        NSMutableDictionary *tempDictionary = [[NSMutableDictionary alloc] init];
+        [tempDictionary setObject:latitude forKey:@"Latitude"];
+        [tempDictionary setObject:longitude forKey:@"Longitude"];
+        [tempDictionary setObject:currentName forKey:@"Name"];
+        
+        [values addObject:tempDictionary];
         
     }
+    
     return values;
 }
 
