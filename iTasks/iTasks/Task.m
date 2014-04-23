@@ -52,7 +52,7 @@
         // Get the placemark
         MKPlacemark *tempPlaceMark = tempMapItem.placemark;
         NSLog(@"Placemark: %@", tempPlaceMark);
-        // Extract Latitude and Longitude from the placemark's address dictionary
+        // Extract Latitude and Longitude from the placemark's coordinate
         CLLocationCoordinate2D tempCoordinates = tempPlaceMark.coordinate;
         NSString *latitude = [NSString stringWithFormat:@"%f", tempCoordinates.latitude];
         NSString *longitude = [NSString stringWithFormat:@"%f", tempCoordinates.longitude];
@@ -66,9 +66,9 @@
         [tempDictionary setObject:latitude forKey:@"Latitude"];
         [tempDictionary setObject:longitude forKey:@"Longitude"];
         [tempDictionary setObject:currentName forKey:@"Name"];
-        
+        // Make the mutable dictionary immutable so it plays nice with NSUserDefaults
         NSDictionary *finalDictionary = [NSDictionary dictionaryWithDictionary:tempDictionary];
-        
+        // Add the finalized dictionary to our list of values
         [values addObject:finalDictionary];
         
     }

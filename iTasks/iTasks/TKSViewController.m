@@ -27,13 +27,6 @@
     return _tasksList;
 }
 
--(NSMutableArray *) allTasks {
-    if (!_allTasks) {
-        _allTasks = [[NSMutableArray alloc] init];
-    }
-    return _allTasks;
-}
-
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.tasksList.count;
 }
@@ -115,13 +108,17 @@
     NSMutableArray *defaultTasksList = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allTasks"] mutableCopy];
     
     NSLog(@"%@", defaultTasksList);
+    // Make sure we have tasks to dispaly before we do anything
     if (defaultTasksList.count > 0) {
-        self.allTasks = [NSMutableArray arrayWithArray:defaultTasksList];
-        for (NSDictionary *currentTask in self.allTasks) {
+        for (NSDictionary *currentTask in defaultTasksList) {
+            // Create a new task, setting it's properties from each item in the
+            // defaults array
             Task *newTask = [[Task alloc] init];
             newTask.title = [currentTask objectForKey:@"Title"];
             newTask.description = [currentTask objectForKey:@"Description"];
+            // Get the list of locations from the current task
             NSArray *currentLocations = [currentTask objectForKey:@"Locations"];
+            // Turn each location item into an MKMapItem for use on the map
             for (NSDictionary *locationsDict in currentLocations) {
                 double latitude = [[locationsDict objectForKey:@"Latitude"] doubleValue];
                 double longitude = [[locationsDict objectForKey:@"Longitude"] doubleValue];
