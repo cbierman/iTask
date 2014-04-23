@@ -123,7 +123,9 @@
 
 - (void) displayTasksInMap {
     for (Task *task in self.tasksList) {
-        [self.mapView addAnnotations:task.otherLocations];
+        //[self.mapView addAnnotations:task.otherLocations];
+        for (MKMapItem *mapItem in task.otherLocations)
+            [self.mapView addAnnotation: mapItem.placemark];
     }
 }
 

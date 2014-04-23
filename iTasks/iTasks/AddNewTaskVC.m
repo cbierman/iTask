@@ -88,7 +88,7 @@
         // an array of MKMapItem objects
          NSMutableArray *placemarks = [NSMutableArray array];
          for (MKMapItem *item in response.mapItems) {
-             [placemarks addObject:item.placemark];
+             [placemarks addObject:item];
          }
          // save results in an instance variable
          self.searchResults = placemarks;
@@ -216,8 +216,9 @@
     NSMutableArray *placemarks = [NSMutableArray array];
     
     // Prints the latitude of the object we saved
-    for (MKPlacemark *item in (NSArray *)self.selectedPlaces) {
-        CLLocationCoordinate2D coords = item.coordinate;
+    for (MKMapItem *item in (NSArray *)self.selectedPlaces) {
+        MKPlacemark *thing = item.placemark;
+        CLLocationCoordinate2D coords = thing.coordinate;
         NSString *coordinateString = [NSString stringWithFormat:@"%f", coords.latitude];
         NSLog(@"%@",coordinateString);
         [placemarks addObject:item];

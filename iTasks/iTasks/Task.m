@@ -22,7 +22,7 @@
     return _otherLocations;
 }
 
-- (void) addLocationToList:(MKPlacemark *) location {
+- (void) addLocationToList:(MKMapItem *) location {
     
     [self.otherLocations addObject: location];
 

@@ -22,7 +22,7 @@
 @property BOOL isSpecific;
 @property BOOL isComplete;
 
--(void) addLocationToList:(MKPlacemark *)location;
+-(void) addLocationToList:(MKMapItem *)location;
 -(NSMutableDictionary *) convertTaskToDictionary;
 
 @end
