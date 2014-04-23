@@ -67,7 +67,9 @@
         [tempDictionary setObject:longitude forKey:@"Longitude"];
         [tempDictionary setObject:currentName forKey:@"Name"];
         
-        [values addObject:tempDictionary];
+        NSDictionary *finalDictionary = [NSDictionary dictionaryWithDictionary:tempDictionary];
+        
+        [values addObject:finalDictionary];
         
     }
     

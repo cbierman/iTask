@@ -112,11 +112,11 @@
     [self zoomOnUserLocation];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    NSMutableArray *tasksList = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allTasks"] mutableCopy];
+    NSMutableArray *defaultTasksList = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allTasks"] mutableCopy];
     
-    NSLog(@"%@", tasksList);
-    if (tasksList.count > 0) {
-        self.allTasks = [NSMutableArray arrayWithArray:tasksList];
+    NSLog(@"%@", defaultTasksList);
+    if (defaultTasksList.count > 0) {
+        self.allTasks = [NSMutableArray arrayWithArray:defaultTasksList];
         for (NSDictionary *currentTask in self.allTasks) {
             Task *newTask = [[Task alloc] init];
             newTask.title = [currentTask objectForKey:@"Title"];
@@ -130,6 +130,7 @@
                 MKMapItem *currentMapItem = [[MKMapItem alloc] initWithPlacemark:currentPlacemark];
                 [newTask.otherLocations addObject:currentMapItem];
             }
+            [self.tasksList addObject:newTask];
         }
     }
     
