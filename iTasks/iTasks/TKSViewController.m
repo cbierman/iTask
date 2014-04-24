@@ -43,6 +43,10 @@
          NSArray *annotations = [[NSArray alloc] initWithArray:[self.mapView annotations]];
         [self.mapView removeAnnotations:annotations];
         [self displayTasksInMap];
+        
+        NSMutableArray *defaultTasksList = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allTasks"] mutableCopy];
+        [defaultTasksList removeObjectAtIndex:indexPath.row];
+        [[NSUserDefaults standardUserDefaults] setObject:defaultTasksList forKey:@"allTasks"];
     }
     [self.tableView reloadData];
     
