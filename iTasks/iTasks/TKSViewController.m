@@ -11,6 +11,7 @@
 #import "AddNewTaskVC.h"
 #import "Task.h"
 #import "TKSTaskPropertiesViewController.h"
+#import <MapKit/MapKit.h>
 
 @interface TKSViewController () <UITableViewDataSource, UITableViewDelegate, AddNewTaskVCDelegate, TaskPropertiesViewControllerDelagate>
 
@@ -38,8 +39,13 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.allTasks removeObjectAtIndex:indexPath.row];
+        [self.tasksList removeObjectAtIndex:indexPath.row];
+         NSArray *annotations = [[NSArray alloc] initWithArray:[self.mapView annotations]];
+        [self.mapView removeAnnotations:annotations];
+        [self displayTasksInMap];
     }
     [self.tableView reloadData];
+    
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

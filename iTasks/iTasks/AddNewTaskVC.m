@@ -152,6 +152,10 @@
 //When user hits "Return" on keyboard, it performs search function
 - (IBAction)textFieldReturn:(id)sender {
     [sender resignFirstResponder];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    self.view.frame = self.originalCenter;
+    [UIView commitAnimations];
     [self performSearch];
 }
 - (IBAction)textFieldDidReturn:(id)sender {
@@ -163,6 +167,10 @@
 }
 - (IBAction)taskNameDone:(id)sender {
     [sender resignFirstResponder];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    self.view.frame = self.originalCenter;
+    [UIView commitAnimations];
 }
 - (IBAction)desciptionFieldDidBeginEditing:(id)sender {
     [UIView beginAnimations:nil context:NULL];
