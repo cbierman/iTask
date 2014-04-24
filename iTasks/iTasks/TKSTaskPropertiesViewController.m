@@ -36,6 +36,9 @@
     //Do NSUserDefault stuff here
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.titleLabel.text = self.titleText;
+    self.descriptionLabel.text = self.descriptionText;
 }
 
 

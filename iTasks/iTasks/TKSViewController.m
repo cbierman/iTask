@@ -85,11 +85,12 @@
         NSInteger selectedCellNumber = indexPath.row;
         NSLog(@"Index Row: %ld", (long)selectedCellNumber);
         
-        NSDictionary *taskDict = [self.allTasks objectAtIndex:selectedCellNumber];
-        NSLog(@"%@", taskDict);
+        Task *selectedTask = [self.tasksList objectAtIndex:selectedCellNumber];
         
-        taskProperties.titleLabel.text = [taskDict objectForKey:@"Title"];
-        taskProperties.descriptionLabel.text = [taskDict objectForKey:@"Description"];
+        NSLog(@"%@", selectedTask.title);
+        
+        taskProperties.titleText = selectedTask.title;
+        taskProperties.descriptionText = selectedTask.description;
         taskProperties.delegate = self;
     }
 }

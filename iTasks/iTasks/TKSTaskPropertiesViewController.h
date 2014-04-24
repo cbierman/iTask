@@ -22,5 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-
+@property (strong, nonatomic) NSString *titleText;
+@property (strong, nonatomic) NSString *descriptionText;
+@property (strong, nonatomic) NSString *dateText;
 @end

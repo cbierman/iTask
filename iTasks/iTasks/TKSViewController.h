@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "TKSTaskPropertiesViewController.h"
 
-@interface TKSViewController : UIViewController <MKMapViewDelegate>
+@interface TKSViewController : UIViewController <MKMapViewDelegate, TaskPropertiesViewControllerDelagate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong,nonatomic) NSMutableArray *tasksList;
