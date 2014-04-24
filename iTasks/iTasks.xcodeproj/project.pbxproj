@@ -97,6 +97,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23DBE40A1908BB8A007A7CB2 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		88A31B7718E50DB10012B9AD = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +139,7 @@
 		88A31B8918E50DB10012B9AD /* iTasks */ = {
 			isa = PBXGroup;
 			children = (
+				23DBE40A1908BB8A007A7CB2 /* iPad */,
 				880990CA18E9BEBA00D0EE96 /* Task.h */,
 				880990CB18E9BEBA00D0EE96 /* Task.m */,
 				88A31B9218E50DB10012B9AD /* TKSAppDelegate.h */,
@@ -419,8 +427,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iTasks/iTasks-Prefix.pch";
 				INFOPLIST_FILE = "iTasks/iTasks-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -435,8 +445,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iTasks/iTasks-Prefix.pch";
 				INFOPLIST_FILE = "iTasks/iTasks-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
