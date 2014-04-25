@@ -37,6 +37,11 @@
     
     self.titleLabel.text = self.titleText;
     self.descriptionLabel.text = self.descriptionText;
+    
+    // Formats the expiration date as month-day-year
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM-dd-yyyy"];
+    self.dateLabel.text = [formatter stringFromDate:self.date];
 }
 
 

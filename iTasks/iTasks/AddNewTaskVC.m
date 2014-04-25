@@ -103,10 +103,15 @@
 
 -(NSDate *) createDateFromTexFieldWithDay: (NSString *)day withMonth: (NSString *)month withYear:(NSString *)year  {
     NSDateComponents *components = [[NSDateComponents alloc] init];
+    
+    NSLog(@"%@", day);
+    NSLog(@"%@", month);
+    NSLog(@"%@", year);
     [components setDay:[day integerValue]];
     [components setMonth:[month integerValue]];
     [components setYear:[year integerValue]];
-    NSDate *date = [components date];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *date = [gregorian dateFromComponents:components];
     return date;
 }
 
@@ -201,7 +206,8 @@
     newTask.title = self.taskName.text;
     newTask.description = self.taskDescription.text;
     newTask.otherLocations = [self.selectedPlaces mutableCopy];
-   //
+    newTask.taskExpirationDate = [self createDateFromTexFieldWithDay:self.dayField.text withMonth:self.monthField.text withYear:self.yearField.text];
+    NSLog(@"%@", newTask.taskExpirationDate);
     [self.delegateTasksList addObject:newTask];
     
     // Convert the task to a dictionary
@@ -217,20 +223,11 @@
     [defaults setObject:[NSArray arrayWithArray:allTasks] forKey:@"allTasks"];
     // Synchronize
     [defaults synchronize];
-    NSLog(@"sycnronized defaults");
     
     // we remove all current annotations on map
     [self.mapHandle removeAnnotations:[self.mapHandle annotations]];
 
-    NSMutableArray *placemarks = [NSMutableArray array];
     
-    // Prints the latitude of the object we saved
-    for (MKMapItem *item in (NSArray *)self.selectedPlaces) {
-        MKPlacemark *thing = item.placemark;
-        CLLocationCoordinate2D coords = thing.coordinate;
-        NSString *coordinateString = [NSString stringWithFormat:@"%f", coords.latitude];
-        [placemarks addObject:item];
-    }
     // Then mimic a cancel because we have yet to add an item
     [self.delegate AddNewTaskViewControllerDidCancel:self];
     
