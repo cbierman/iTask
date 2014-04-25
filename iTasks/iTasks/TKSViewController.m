@@ -15,8 +15,11 @@
 
 @interface TKSViewController () <UITableViewDataSource, UITableViewDelegate, AddNewTaskVCDelegate, TaskPropertiesViewControllerDelagate>
 
+//@property (strong, nonatomic) NSMutableArray *notificationArray;
+
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *allTasks;
+
 @end
 
 @implementation TKSViewController
