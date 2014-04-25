@@ -18,7 +18,6 @@
 //@property (strong, nonatomic) NSMutableArray *notificationArray;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *allTasks;
 
 @end
 
@@ -41,15 +40,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.allTasks removeObjectAtIndex:indexPath.row];
-        [self.tasksList removeObjectAtIndex:indexPath.row];
-         NSArray *annotations = [[NSArray alloc] initWithArray:[self.mapView annotations]];
-        [self.mapView removeAnnotations:annotations];
-        [self displayTasksInMap];
-        
-        NSMutableArray *defaultTasksList = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allTasks"] mutableCopy];
-        [defaultTasksList removeObjectAtIndex:indexPath.row];
-        [[NSUserDefaults standardUserDefaults] setObject:defaultTasksList forKey:@"allTasks"];
+        [self deleteTaskAtIndex:indexPath.row];
     }
     [self.tableView reloadData];
     
@@ -69,7 +60,6 @@
 }
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addNewTask"]) {
-        //NSLog(@"Adding new task! Hopefully");
         UINavigationController *navigationController = segue.destinationViewController;
         AddNewTaskVC *addNewTaskVC = [navigationController viewControllers][0];
         addNewTaskVC.mapHandle = _mapView;
@@ -135,28 +125,48 @@
     // Make sure we have tasks to dispaly before we do anything
     if (defaultTasksList.count > 0) {
         for (NSDictionary *currentTask in defaultTasksList) {
-            // Create a new task, setting it's properties from each item in the
-            // defaults array
-            Task *newTask = [[Task alloc] init];
-            newTask.title = [currentTask objectForKey:@"Title"];
-            newTask.description = [currentTask objectForKey:@"Description"];
-            // Get the list of locations from the current task
-            NSArray *currentLocations = [currentTask objectForKey:@"Locations"];
-            // Turn each location item into an MKMapItem for use on the map
-            for (NSDictionary *locationsDict in currentLocations) {
-                double latitude = [[locationsDict objectForKey:@"Latitude"] doubleValue];
-                double longitude = [[locationsDict objectForKey:@"Longitude"] doubleValue];
-                CLLocationCoordinate2D currentCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
-                MKPlacemark *currentPlacemark = [[MKPlacemark alloc] initWithCoordinate:currentCoordinate addressDictionary:nil];
-                MKMapItem *currentMapItem = [[MKMapItem alloc] initWithPlacemark:currentPlacemark];
-                [newTask.otherLocations addObject:currentMapItem];
+            NSDate *currentExpDate = [currentTask objectForKey:@"Expiration Date"];
+            NSDate *todaysDate = [NSDate date];
+            NSComparisonResult result = [currentExpDate compare: todaysDate];
+            
+            if (result == -1) {
+                [defaultTasksList removeObject:currentTask];
+                
+            } else {
+            
+                // Create a new task, setting it's properties from each item in the
+                // defaults array
+                Task *newTask = [[Task alloc] init];
+                newTask.title = [currentTask objectForKey:@"Title"];
+                newTask.description = [currentTask objectForKey:@"Description"];
+                // Get the list of locations from the current task
+                NSArray *currentLocations = [currentTask objectForKey:@"Locations"];
+                // Turn each location item into an MKMapItem for use on the map
+                for (NSDictionary *locationsDict in currentLocations) {
+                    double latitude = [[locationsDict objectForKey:@"Latitude"] doubleValue];
+                    double longitude = [[locationsDict objectForKey:@"Longitude"] doubleValue];
+                    CLLocationCoordinate2D currentCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+                    MKPlacemark *currentPlacemark = [[MKPlacemark alloc] initWithCoordinate:currentCoordinate addressDictionary:nil];
+                    MKMapItem *currentMapItem = [[MKMapItem alloc] initWithPlacemark:currentPlacemark];
+                    [newTask.otherLocations addObject:currentMapItem];
+                }
+                // Add the expiration date to the new Task
+                newTask.taskExpirationDate = [currentTask objectForKey:@"Expiration Date"];
+                [self.tasksList addObject:newTask];
             }
-            // Add the expiration date to the new Task
-            newTask.taskExpirationDate = [currentTask objectForKey:@"Expiration Date"];
-            [self.tasksList addObject:newTask];
         }
     }
     
+}
+-(void)deleteTaskAtIndex:(NSInteger) index {
+    [self.tasksList removeObjectAtIndex:index];
+    NSArray *annotations = [[NSArray alloc] initWithArray:[self.mapView annotations]];
+    [self.mapView removeAnnotations:annotations];
+    [self displayTasksInMap];
+    
+    NSMutableArray *defaultTasksList = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allTasks"] mutableCopy];
+    [defaultTasksList removeObjectAtIndex:index];
+    [[NSUserDefaults standardUserDefaults] setObject:defaultTasksList forKey:@"allTasks"];
 }
 
 
