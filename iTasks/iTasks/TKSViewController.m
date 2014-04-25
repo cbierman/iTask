@@ -46,6 +46,72 @@
     
 }
 
+- (UIImage *)burnTextIntoImage:(NSString *)text :(UIImage *)img {
+    
+    UIGraphicsBeginImageContext(img.size);
+    
+    CGRect aRectangle = CGRectMake(0,0, img.size.width/2, img.size.height/2);
+    [img drawInRect:aRectangle];
+    
+    [[UIColor blackColor] set];           // set text color
+    NSInteger fontSize = 12;
+    if ( [text length] > 200 ) {
+        fontSize = 10;
+    }
+    UIFont *font = [UIFont boldSystemFontOfSize: fontSize]; // set text font
+    
+    /// Make a copy of the default paragraph style
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    /// Set line break mode
+    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+    /// Set text alignment
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName : font, NSParagraphStyleAttributeName : paragraphStyle};
+    [text drawInRect:aRectangle withAttributes:attributes];
+    
+    UIImage *theImage=UIGraphicsGetImageFromCurrentImageContext();   // extract the image
+    UIGraphicsEndImageContext();     // clean  up the context.
+    return theImage;
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    NSUInteger index = -1;
+    CLLocationCoordinate2D coords = [annotation coordinate];
+    for (Task *task in self.tasksList) {
+        for (MKMapItem *mapItem in task.otherLocations) {
+            CLLocationCoordinate2D myCoords = mapItem.placemark.coordinate;
+            if ((coords.latitude == myCoords.latitude) && (coords.longitude == myCoords.longitude)) {
+                index = [self.tasksList indexOfObject:task];
+                break;
+            }
+        }
+        if (index != -1) {
+            break;
+        }
+    }
+    if (index != -1) {
+        // this part is boilerplate code used to create or reuse a pin annotation
+        static NSString *viewId = @"MKPinAnnotationView";
+        MKPinAnnotationView *annotationView = (MKPinAnnotationView*)
+        [self.mapView dequeueReusableAnnotationViewWithIdentifier:viewId];
+        if (annotationView == nil) {
+            annotationView = [[MKPinAnnotationView alloc]
+                              initWithAnnotation:annotation reuseIdentifier:viewId];
+        }
+        
+        // set your custom image
+        UIImage *tempImage = [UIImage imageNamed:@"thumb-orange-circle.png"];
+        UIImage *newImage = [self burnTextIntoImage:[NSString stringWithFormat:@"%u",index+1] :tempImage];
+        annotationView.image = newImage;
+        return annotationView;
+    } else {
+        return nil;
+    }
+    //return annotationView;
+}
+
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mapItem"];
     Task *task = [self.tasksList objectAtIndex:indexPath.row];
