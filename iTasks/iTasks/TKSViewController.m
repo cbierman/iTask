@@ -187,7 +187,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     NSMutableArray *defaultTasksList = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allTasks"] mutableCopy];
-    
+    NSMutableArray *tasksToDelete = [NSMutableArray array];
     // Make sure we have tasks to dispaly before we do anything
     if (defaultTasksList.count > 0) {
         for (NSDictionary *currentTask in defaultTasksList) {
@@ -196,8 +196,8 @@
             NSComparisonResult result = [currentExpDate compare: todaysDate];
             
             if (result == -1) {
-                [defaultTasksList removeObject:currentTask];
-                
+                [tasksToDelete addObject:currentTask];
+            
             } else {
             
                 // Create a new task, setting it's properties from each item in the
@@ -219,6 +219,11 @@
                 // Add the expiration date to the new Task
                 newTask.taskExpirationDate = [currentTask objectForKey:@"Expiration Date"];
                 [self.tasksList addObject:newTask];
+            }
+        }
+        if ([tasksToDelete count] > 0) {
+            for (NSDictionary *taskToBeDeleted in tasksToDelete) {
+                [defaultTasksList removeObject:taskToBeDeleted];
             }
         }
     }
