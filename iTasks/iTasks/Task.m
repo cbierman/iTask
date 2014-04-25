@@ -15,7 +15,7 @@
 
 
 
-- (NSMutableArray *) otherLocations {
+- (NSMutableArray *) others {
     if (!_otherLocations) {
         _otherLocations = [[NSMutableArray alloc] init];
     }
@@ -51,7 +51,6 @@
         NSString *currentName = [tempMapItem name];
         // Get the placemark
         MKPlacemark *tempPlaceMark = tempMapItem.placemark;
-        NSLog(@"Placemark: %@", tempPlaceMark);
         // Extract Latitude and Longitude from the placemark's coordinate
         CLLocationCoordinate2D tempCoordinates = tempPlaceMark.coordinate;
         NSString *latitude = [NSString stringWithFormat:@"%f", tempCoordinates.latitude];

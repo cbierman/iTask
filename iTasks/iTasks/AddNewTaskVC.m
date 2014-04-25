@@ -17,7 +17,6 @@
 @property (strong,nonatomic) NSMutableArray *searchResults;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *completingSearchIndicator;
 @property (strong,nonatomic) NSMutableArray *selectedPlaces;
-//@property (strong,nonatomic) NSMutableArray *selectedPlacemarks;
 @property (weak, nonatomic) IBOutlet UITextField *taskDescription;
 @property (weak, nonatomic) IBOutlet UITextField *monthField;
 @property (weak, nonatomic) IBOutlet UITextField *dayField;
@@ -104,9 +103,7 @@
 -(NSDate *) createDateFromTexFieldWithDay: (NSString *)day withMonth: (NSString *)month withYear:(NSString *)year  {
     NSDateComponents *components = [[NSDateComponents alloc] init];
     
-    NSLog(@"%@", day);
-    NSLog(@"%@", month);
-    NSLog(@"%@", year);
+
     [components setDay:[day integerValue]];
     [components setMonth:[month integerValue]];
     [components setYear:[year integerValue]];
@@ -207,7 +204,6 @@
     newTask.description = self.taskDescription.text;
     newTask.otherLocations = [self.selectedPlaces mutableCopy];
     newTask.taskExpirationDate = [self createDateFromTexFieldWithDay:self.dayField.text withMonth:self.monthField.text withYear:self.yearField.text];
-    NSLog(@"%@", newTask.taskExpirationDate);
     [self.delegateTasksList addObject:newTask];
     
     // Convert the task to a dictionary
