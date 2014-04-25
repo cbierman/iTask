@@ -64,11 +64,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"performing segue, son");
-    
     
     [self performSegueWithIdentifier:@"seeTaskProperties" sender: indexPath];
-    
 }
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addNewTask"]) {
@@ -82,18 +79,17 @@
     
     if ([segue.identifier isEqualToString:@"seeTaskProperties"]) {
         UINavigationController *navController = segue.destinationViewController;
+        // Get the VC of where we're going
         TKSTaskPropertiesViewController *taskProperties = [navController viewControllers][0];
-        
+        // Get the index path so we can figure out which task was selected
         NSIndexPath *indexPath = (NSIndexPath *) sender;
         NSInteger selectedCellNumber = indexPath.row;
-        NSLog(@"Index Row: %ld", (long)selectedCellNumber);
         
         Task *selectedTask = [self.tasksList objectAtIndex:selectedCellNumber];
-        
-        NSLog(@"%@", selectedTask.title);
-        
+        // Set all the properties for use by the Settings VC
         taskProperties.titleText = selectedTask.title;
         taskProperties.descriptionText = selectedTask.description;
+        taskProperties.date = selectedTask.taskExpirationDate;
         taskProperties.delegate = self;
     }
 }
@@ -136,7 +132,6 @@
     self.tableView.dataSource = self;
     NSMutableArray *defaultTasksList = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allTasks"] mutableCopy];
     
-    NSLog(@"%@", defaultTasksList);
     // Make sure we have tasks to dispaly before we do anything
     if (defaultTasksList.count > 0) {
         for (NSDictionary *currentTask in defaultTasksList) {
@@ -156,6 +151,8 @@
                 MKMapItem *currentMapItem = [[MKMapItem alloc] initWithPlacemark:currentPlacemark];
                 [newTask.otherLocations addObject:currentMapItem];
             }
+            // Add the expiration date to the new Task
+            newTask.taskExpirationDate = [currentTask objectForKey:@"Expiration Date"];
             [self.tasksList addObject:newTask];
         }
     }

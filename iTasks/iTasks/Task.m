@@ -38,7 +38,7 @@
     [taskDict setObject:self.title forKey:@"Title"];
     [taskDict setObject:self.description forKey:@"Description"];
     [taskDict setObject:locations forKey:@"Locations"];
-//    [taskDict setObject:self.taskExpirationDate forKey:@"Expiration Date"];
+    [taskDict setObject:self.taskExpirationDate forKey:@"Expiration Date"];
     return taskDict;
 }
 
@@ -58,9 +58,7 @@
         NSString *longitude = [NSString stringWithFormat:@"%f", tempCoordinates.longitude];
         // Store them in a dictionary
         
-        NSLog(@"Latitude : %@", latitude);
-        NSLog(@"Longitude : %@", longitude);
-        NSLog(@"Name : %@", currentName);
+
         
         NSMutableDictionary *tempDictionary = [[NSMutableDictionary alloc] init];
         [tempDictionary setObject:latitude forKey:@"Latitude"];
