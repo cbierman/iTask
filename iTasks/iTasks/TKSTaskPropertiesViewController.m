@@ -26,9 +26,7 @@
     
 }
 
-- (IBAction)unwindFromViewController:(UIStoryboardSegue *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+
 
 
 - (void)viewDidLoad

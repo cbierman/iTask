@@ -95,6 +95,10 @@
     }
 }
 
+- (IBAction)unwindFromViewController:(UIStoryboardSegue *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(void)AddNewTaskViewControllerDidCancel:(AddNewTaskVC *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
