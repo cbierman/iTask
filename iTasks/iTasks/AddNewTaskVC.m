@@ -235,10 +235,16 @@
     localNotification.alertAction = @"See Task";
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
     localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.timeZone = [NSTimeZone localTimeZone];
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     // Request to reload table view data
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
     
 }
+
+- (void)setMinimumBackgroundFetchInterval:(NSTimeInterval)minimumBackgroundFetchInterval {
+    
+}
+
+
 @end

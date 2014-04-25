@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		239739E6190AFF11003E68D5 /* TKSAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 239739E5190AFF11003E68D5 /* TKSAppSettingsViewController.m */; };
 		614D999D18F36EF7005556C6 /* TKSTaskPropertiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614D999C18F36EF7005556C6 /* TKSTaskPropertiesViewController.m */; };
 		88012F1518EE36CC00D80941 /* SearchResultsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88012F1418EE36CC00D80941 /* SearchResultsVC.m */; };
 		880990CC18E9BEBA00D0EE96 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 880990CB18E9BEBA00D0EE96 /* Task.m */; };
@@ -40,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		239739E4190AFF11003E68D5 /* TKSAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKSAppSettingsViewController.h; sourceTree = "<group>"; };
+		239739E5190AFF11003E68D5 /* TKSAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSAppSettingsViewController.m; sourceTree = "<group>"; };
 		614D999B18F36EF7005556C6 /* TKSTaskPropertiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKSTaskPropertiesViewController.h; sourceTree = "<group>"; };
 		614D999C18F36EF7005556C6 /* TKSTaskPropertiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSTaskPropertiesViewController.m; sourceTree = "<group>"; };
 		88012F1318EE36CC00D80941 /* SearchResultsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsVC.h; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				88A31B9218E50DB10012B9AD /* TKSAppDelegate.h */,
 				88A31B9318E50DB10012B9AD /* TKSAppDelegate.m */,
 				88A31B9518E50DB10012B9AD /* Main.storyboard */,
+				239739E4190AFF11003E68D5 /* TKSAppSettingsViewController.h */,
+				239739E5190AFF11003E68D5 /* TKSAppSettingsViewController.m */,
 				614D999B18F36EF7005556C6 /* TKSTaskPropertiesViewController.h */,
 				614D999C18F36EF7005556C6 /* TKSTaskPropertiesViewController.m */,
 				88A31B9818E50DB10012B9AD /* TKSViewController.h */,
@@ -293,6 +298,7 @@
 				880990CC18E9BEBA00D0EE96 /* Task.m in Sources */,
 				88A31B9018E50DB10012B9AD /* main.m in Sources */,
 				88A31B9A18E50DB10012B9AD /* TKSViewController.m in Sources */,
+				239739E6190AFF11003E68D5 /* TKSAppSettingsViewController.m in Sources */,
 				614D999D18F36EF7005556C6 /* TKSTaskPropertiesViewController.m in Sources */,
 				88A31B9418E50DB10012B9AD /* TKSAppDelegate.m in Sources */,
 				88012F1518EE36CC00D80941 /* SearchResultsVC.m in Sources */,
