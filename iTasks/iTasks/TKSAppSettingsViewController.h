@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @interface TKSAppSettingsViewController : UITableViewController {
-    NSInteger *walkingRadius;
-    NSInteger *drivingRadius;
+   
     
 }
 @property BOOL isDriving;
+@property NSTimeInterval checkInFrequency;
+@property NSInteger *walkingRadius;
+@property NSInteger *drivingRadius;
 
-+(id)sharedManager;
++ (id)sharedManager;
 
 
 
