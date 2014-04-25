@@ -12,10 +12,10 @@
    
     
 }
-@property BOOL isDriving;
-@property NSTimeInterval checkInFrequency;
-@property NSInteger *walkingRadius;
-@property NSInteger *drivingRadius;
++(BOOL) isDriving;
++(NSTimeInterval) checkInFrequency;
++(NSUInteger) walkingRadius;
++(NSUInteger) drivingRadius;
 
 + (id)sharedManager;
 

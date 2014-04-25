@@ -99,7 +99,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwz-04-ukp">
-                                <rect key="frame" x="20" y="33" width="191" height="49"/>
+                                <rect key="frame" x="20" y="70" width="191" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -110,6 +110,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="maxDrivingRadius:" destination="P03-oi-cAb" eventType="editingDidEnd" id="3x3-XH-CHy"/>
+                                    <action selector="maxDrivingRadiusEditingBegin:" destination="P03-oi-cAb" eventType="editingDidBegin" id="Iel-Ry-U0c"/>
+                                    <action selector="maxDrivingRadiusEditingEnded:" destination="P03-oi-cAb" eventType="editingDidEnd" id="Afa-79-wi5"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Maximum distance to be notified..." lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="270" translatesAutoresizingMaskIntoConstraints="NO" id="tWq-nO-TzM">
                                 <rect key="frame" x="20" y="157" width="270" height="32"/>
@@ -158,6 +163,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="checkInFrequency:" destination="P03-oi-cAb" eventType="editingDidEnd" id="Mti-W8-I4c"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hours" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMT-LQ-CMr">
                                 <rect key="frame" x="239" y="297" width="51" height="30"/>
@@ -190,6 +198,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="iJh-P1-hub"/>
+                    <connections>
+                        <outlet property="checkInFrequency" destination="OkU-6m-TVY" id="OxO-YV-Di3"/>
+                        <outlet property="drivingRadius" destination="PHF-dj-GlZ" id="7uj-kF-pVQ"/>
+                        <outlet property="isWalking" destination="Xem-Hn-7lT" id="sOK-2y-b8W"/>
+                        <outlet property="walkingRadius" destination="kUZ-CD-zmN" id="8w4-F0-kbw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opn-yb-iqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
