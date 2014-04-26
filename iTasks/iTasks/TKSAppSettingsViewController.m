@@ -63,6 +63,10 @@ static TKSAppSettingsViewController *sharedMyManager = nil;
 }
 
 
+- (IBAction)walkingRadiusEditingEnded:(id)sender {
+    [sender resignFirstResponder];
+}
+
 
 - (IBAction)maxDrivingRadiusEditingEnded:(id)sender {
     [sender resignFirstResponder];
@@ -83,6 +87,11 @@ static TKSAppSettingsViewController *sharedMyManager = nil;
     self.view.frame = self.originalCenter;
     [UIView commitAnimations];
 }
+
+- (IBAction)donePressed:(id)sender {
+
+}
+
 
 
 - (void)viewDidLoad

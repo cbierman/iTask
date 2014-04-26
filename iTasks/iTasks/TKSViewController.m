@@ -19,7 +19,7 @@
 //@property (strong, nonatomic) NSMutableArray *notificationArray;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
+@property (strong,nonatomic) NSMutableArray *regionsList;
 @end
 
 @implementation TKSViewController
@@ -29,6 +29,14 @@
         _tasksList = [[NSMutableArray alloc] init];
     }
     return _tasksList;
+}
+
+-(NSMutableArray *)regionsList {
+    if (!_regionsList) {
+        _regionsList = [[NSMutableArray alloc] init];
+    }
+    
+    return _regionsList;
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -45,6 +53,18 @@
     }
     [self.tableView reloadData];
     
+}
+
+- (void) initializeManager {
+    if (![CLLocationManager locationServicesEnabled]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled" message:@"This app requires location services to be enabled to function" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        
+    }
+    
+    _manager = [[CLLocationManager alloc] init];
+    _manager.delegate = self;
+    [self initializeRegionMonitoring: self.regionsList];
 }
 
 - (UIImage *)burnTextIntoImage:(NSString *)text :(UIImage *)img {
@@ -171,6 +191,8 @@
 }
 
 - (void) AddNewTaskViewController:(AddNewTaskVC *)controller didAddTask:(Task *)newTask {
+    NSDictionary *taskDictionary = [newTask convertTaskToDictionary];
+    [self mapDictionaryToRegion:taskDictionary];
     
 }
 
@@ -266,10 +288,60 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void) mapDictionaryToRegion:(NSDictionary *)inputDict {
+    NSString *taskTitle = [inputDict objectForKey:@"Title"];
+    NSArray *locationsArray = [inputDict objectForKey:@"Locations"];
+    for (NSDictionary *location in locationsArray) {
+        CLLocationDegrees latitude = [[location objectForKey:@"Latitude"] doubleValue];
+        CLLocationDegrees longitude = [[location objectForKey:@"Longitude"] doubleValue];
+        NSString *identifier = [NSString stringWithFormat:@"%@ %f %f", taskTitle, latitude, longitude];
+        
+        CLLocationCoordinate2D center = CLLocationCoordinate2DMake(latitude, longitude);
+        
+        BOOL driving = [[TKSAppSettingsViewController sharedManager] isDriving];
+        
+        if (driving) {
+            CLLocationDistance radius =  (double)[[TKSAppSettingsViewController sharedManager] drivingRadius];
+            CLCircularRegion *drivingRegion = [[CLCircularRegion alloc] initWithCenter:center radius:radius identifier:identifier];
+            [self.regionsList addObject:drivingRegion];
+
+        } else {
+            CLLocationDistance radius = (double)[[TKSAppSettingsViewController sharedManager] walkingRadius];
+            CLCircularRegion *walkingRegion = [[CLCircularRegion alloc] initWithCenter:center radius:radius identifier:identifier];
+            [self.regionsList addObject:walkingRegion];
+        }
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     
     [self.tableView reloadData];
     [self displayTasksInMap];
+    [self initializeManager];
+}
+
+- (void) initializeRegionMonitoring:(NSArray *)fences {
+    if (![CLLocationManager isMonitoringAvailableForClass:[CLRegion class]]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Regions" message:@"This app requires region monitoring to work" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
+    for (CLRegion *geofence in fences) {
+        [self.manager startMonitoringForRegion:geofence];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location update" message:@"You've entered a task region" delegate:nil cancelButtonTitle:@"Yay!" otherButtonTitles:nil];
+    [alert show];
+}
+
+// fired when user exits geo fence
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+{
+
 }
 
 @end

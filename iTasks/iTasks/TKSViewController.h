@@ -11,13 +11,12 @@
 #import <CoreLocation/CoreLocation.h>
 #import "TKSTaskPropertiesViewController.h"
 #import "TKSAppSettingsViewController.h"
-@interface TKSViewController : UIViewController <MKMapViewDelegate, TaskPropertiesViewControllerDelagate, AppSettingsViewControllerDelegate>
+@interface TKSViewController : UIViewController <MKMapViewDelegate, TaskPropertiesViewControllerDelagate, AppSettingsViewControllerDelegate, CLLocationManagerDelegate>
 
 -(void) AppSettingsViewControllerDidCancel:(TKSAppSettingsViewController *)controller;
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong,nonatomic) NSMutableArray *tasksList;
-
-
+@property (strong,nonatomic) CLLocationManager *manager;
 
 @end

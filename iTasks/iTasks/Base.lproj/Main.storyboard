@@ -115,8 +115,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="maxDrivingRadius:" destination="P03-oi-cAb" eventType="editingDidEnd" id="3x3-XH-CHy"/>
-                                    <action selector="maxDrivingRadiusEditingBegin:" destination="P03-oi-cAb" eventType="editingDidBegin" id="Iel-Ry-U0c"/>
                                     <action selector="maxDrivingRadiusEditingEnded:" destination="P03-oi-cAb" eventType="editingDidEnd" id="Afa-79-wi5"/>
                                 </connections>
                             </textField>
@@ -143,6 +141,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="walkingRadiusEditingEnded:" destination="P03-oi-cAb" eventType="editingDidEndOnExit" id="Ehl-Px-ysu"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="miles away" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPL-PT-qDy">
                                 <rect key="frame" x="200" y="233" width="90" height="30"/>
@@ -199,6 +200,11 @@
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="plg-Zu-CME">
                             <connections>
                                 <action selector="cancelPressed:" destination="P03-oi-cAb" id="Jyv-nr-eSa"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="INr-xx-wMl">
+                            <connections>
+                                <action selector="donePressed:" destination="P03-oi-cAb" id="5sp-CQ-USz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
