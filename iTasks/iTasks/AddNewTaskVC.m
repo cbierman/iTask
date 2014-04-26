@@ -14,6 +14,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UITextField *taskName;
+@property (strong, nonatomic) UILocalNotification *taskNotification;
 @property (strong,nonatomic) NSMutableArray *searchResults;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *completingSearchIndicator;
 @property (strong,nonatomic) NSMutableArray *selectedPlaces;
@@ -102,8 +103,6 @@
 
 -(NSDate *) createDateFromTexFieldWithDay: (NSString *)day withMonth: (NSString *)month withYear:(NSString *)year  {
     NSDateComponents *components = [[NSDateComponents alloc] init];
-    
-
     [components setDay:[day integerValue]];
     [components setMonth:[month integerValue]];
     [components setYear:[year integerValue]];
@@ -204,6 +203,8 @@
     newTask.description = self.taskDescription.text;
     newTask.otherLocations = [self.selectedPlaces mutableCopy];
     newTask.taskExpirationDate = [self createDateFromTexFieldWithDay:self.dayField.text withMonth:self.monthField.text withYear:self.yearField.text];
+ //   newTask.taskNotification = [self createNotificationForTask:newTask.title];
+    
     [self.delegateTasksList addObject:newTask];
     
     // Convert the task to a dictionary
@@ -219,28 +220,17 @@
     [defaults setObject:[NSArray arrayWithArray:allTasks] forKey:@"allTasks"];
     // Synchronize
     [defaults synchronize];
-    
     // we remove all current annotations on map
     [self.mapHandle removeAnnotations:[self.mapHandle annotations]];
-
-    
     // Then mimic a cancel because we have yet to add an item
     [self.delegate AddNewTaskViewControllerDidCancel:self];
     
     
-    //Send a notification when the user is in specified radius
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:60];
-    localNotification.alertBody = self.taskName.text;
-    localNotification.alertAction = @"See Task";
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-    localNotification.timeZone = [NSTimeZone localTimeZone];
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    // Request to reload table view data
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+    
     
 }
+
+
 
 - (void)setMinimumBackgroundFetchInterval:(NSTimeInterval)minimumBackgroundFetchInterval {
     
