@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TKSAppSettingsViewController;
+@protocol AppSettingsViewControllerDelegate <NSObject>
 
-@interface TKSAppSettingsViewController : UITableViewController {
-   
-    
-}
+- (void) AppSettingsViewControllerDidCancel: (TKSAppSettingsViewController *)controller;
+
+@end
+
+
+@interface TKSAppSettingsViewController : UIViewController
+
+@property (weak, nonatomic) id<AppSettingsViewControllerDelegate> delegate;
+
 +(BOOL) isDriving;
 +(NSTimeInterval) checkInFrequency;
 +(NSUInteger) walkingRadius;

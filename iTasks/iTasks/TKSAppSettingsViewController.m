@@ -25,16 +25,6 @@ static TKSAppSettingsViewController *sharedMyManager = nil;
 
 @implementation TKSAppSettingsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-
 +(NSUInteger) walkingRadius {
     NSUInteger walkingRad = [sharedMyManager.walkingRadius.text integerValue];
     return walkingRad;
@@ -72,6 +62,8 @@ static TKSAppSettingsViewController *sharedMyManager = nil;
     return _completingSearchIndicator;
 }
 
+
+
 - (IBAction)maxDrivingRadiusEditingEnded:(id)sender {
     [sender resignFirstResponder];
 }
@@ -79,15 +71,16 @@ static TKSAppSettingsViewController *sharedMyManager = nil;
 - (IBAction)checkInFrequencyBeginEditing:(id)sender {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.25];
-    self.view.frame = CGRectMake(0,-50,320,400);
+    self.view.frame = CGRectMake(0,-90,320,400);
     [UIView commitAnimations];
     
 }
 
 - (IBAction)checkInFrequency:(id)sender {
+    [sender resignFirstResponder];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.25];
-    self.view.frame = CGRectMake(0,-90,320,400);
+    self.view.frame = self.originalCenter;
     [UIView commitAnimations];
 }
 
@@ -104,6 +97,11 @@ static TKSAppSettingsViewController *sharedMyManager = nil;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
+-(IBAction)cancelPressed:(id)sender {
+    [self.delegate AppSettingsViewControllerDidCancel:self];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -10,11 +10,14 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "TKSTaskPropertiesViewController.h"
+#import "TKSAppSettingsViewController.h"
+@interface TKSViewController : UIViewController <MKMapViewDelegate, TaskPropertiesViewControllerDelagate, AppSettingsViewControllerDelegate>
 
-@interface TKSViewController : UIViewController <MKMapViewDelegate, TaskPropertiesViewControllerDelagate>
+-(void) AppSettingsViewControllerDidCancel:(TKSAppSettingsViewController *)controller;
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong,nonatomic) NSMutableArray *tasksList;
+
 
 
 @end

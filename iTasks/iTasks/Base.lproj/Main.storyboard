@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rcb-on-oPZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rcb-on-oPZ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--View Controller - TKSViewController-->
@@ -69,6 +69,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hNt-xz-mKN">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="7No-sk-IJi">
+                            <connections>
+                                <segue destination="FeF-af-ycf" kind="modal" identifier="appSettingsSegue" id="3Ir-Vj-jBY"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Zye-de-LSj">
                             <connections>
                                 <segue destination="V15-FY-Heg" kind="modal" identifier="addNewTask" id="yr2-LX-w7c"/>
@@ -79,7 +84,6 @@
                         <outlet property="mapView" destination="iMv-HL-9Ga" id="G1m-G0-I57"/>
                         <outlet property="tableView" destination="6qd-Zb-xg4" id="30i-Eo-uaD"/>
                         <segue destination="Cqz-yu-0mr" kind="modal" identifier="seeTaskProperties" id="5q8-9r-NSP"/>
-                        <segue destination="FeF-af-ycf" kind="modal" id="omt-35-vwF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -164,7 +168,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="checkInFrequency:" destination="P03-oi-cAb" eventType="editingDidEnd" id="Mti-W8-I4c"/>
+                                    <action selector="checkInFrequency:" destination="P03-oi-cAb" eventType="editingDidEndOnExit" id="oWG-H8-Cpb"/>
+                                    <action selector="checkInFrequencyBeginEditing:" destination="P03-oi-cAb" eventType="editingDidBegin" id="ndV-t2-fea"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hours" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMT-LQ-CMr">
@@ -187,17 +192,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztd-sa-DfX">
-                                <rect key="frame" x="239" y="359" width="51" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Done">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="iJh-P1-hub"/>
+                    <navigationItem key="navigationItem" id="iJh-P1-hub">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="plg-Zu-CME">
+                            <connections>
+                                <action selector="cancelPressed:" destination="P03-oi-cAb" id="Jyv-nr-eSa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="checkInFrequency" destination="OkU-6m-TVY" id="OxO-YV-Di3"/>
                         <outlet property="drivingRadius" destination="PHF-dj-GlZ" id="7uj-kF-pVQ"/>

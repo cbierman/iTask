@@ -12,6 +12,7 @@
 #import "Task.h"
 #import "TKSTaskPropertiesViewController.h"
 #import <MapKit/MapKit.h>
+#import "TKSAppSettingsViewController.h"
 
 @interface TKSViewController () <UITableViewDataSource, UITableViewDelegate, AddNewTaskVCDelegate, TaskPropertiesViewControllerDelagate>
 
@@ -148,6 +149,12 @@
         taskProperties.date = selectedTask.taskExpirationDate;
         taskProperties.delegate = self;
     }
+    
+    if ([segue.identifier isEqualToString:@"appSettingsSegue"]) {
+        UINavigationController *navController = segue.destinationViewController;
+        TKSAppSettingsViewController *appSettings = [navController viewControllers][0];
+        appSettings.delegate = self;
+    }
 }
 
 - (IBAction)unwindFromViewController:(UIStoryboardSegue *)sender {
@@ -253,6 +260,10 @@
         for (MKMapItem *mapItem in task.otherLocations)
             [self.mapView addAnnotation: mapItem.placemark];
     }
+}
+
+- (void) AppSettingsViewControllerDidCancel:(TKSAppSettingsViewController *)controller {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
