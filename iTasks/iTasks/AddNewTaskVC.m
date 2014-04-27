@@ -223,7 +223,7 @@
     // we remove all current annotations on map
     [self.mapHandle removeAnnotations:[self.mapHandle annotations]];
     // Then mimic a cancel because we have yet to add an item
-    [self.delegate AddNewTaskViewControllerDidCancel:self];
+    [self.delegate AddNewTaskViewController:self didAddTask:newTask];
     
     
     

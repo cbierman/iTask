@@ -62,9 +62,10 @@
         [alert show];
         
     }
-    
+    // Create a CLLocationManager
     _manager = [[CLLocationManager alloc] init];
     _manager.delegate = self;
+    // Start monitoring the regions
     [self initializeRegionMonitoring: self.regionsList];
 }
 
@@ -194,6 +195,7 @@
 - (void) AddNewTaskViewController:(AddNewTaskVC *)controller didAddTask:(Task *)newTask {
     NSDictionary *taskDictionary = [newTask convertTaskToDictionary];
     [self mapDictionaryToRegion:taskDictionary];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -216,7 +218,9 @@
     [self zoomOnUserLocation];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
     NSMutableArray *defaultTasksList = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allTasks"] mutableCopy];
+    NSLog(@"Default tasks list: %@", defaultTasksList);
     NSMutableArray *tasksToDelete = [NSMutableArray array];
     // Make sure we have tasks to dispaly before we do anything
     if (defaultTasksList.count > 0) {
@@ -257,7 +261,6 @@
             }
         }
     }
-    
 }
 -(void)deleteTaskAtIndex:(NSInteger) index {
     [self.tasksList removeObjectAtIndex:index];
@@ -289,26 +292,33 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+// Create region out of a dictionary
 -(void) mapDictionaryToRegion:(NSDictionary *)inputDict {
+    // Get the title of the task
     NSString *taskTitle = [inputDict objectForKey:@"Title"];
+    // Get the locations for the task
     NSArray *locationsArray = [inputDict objectForKey:@"Locations"];
+    // Create a region from the location
     for (NSDictionary *location in locationsArray) {
         CLLocationDegrees latitude = [[location objectForKey:@"Latitude"] doubleValue];
         CLLocationDegrees longitude = [[location objectForKey:@"Longitude"] doubleValue];
+        // Create the identifier by combining the task title, latitude, and longitude seperated by a space
         NSString *identifier = [NSString stringWithFormat:@"%@ %f %f", taskTitle, latitude, longitude];
         
         CLLocationCoordinate2D center = CLLocationCoordinate2DMake(latitude, longitude);
-        
+        // Figure out if we're driving
         BOOL driving = [[TKSAppSettingsViewController sharedManager] isDriving];
-        
+        // If we are, use the driving radius number
         if (driving) {
             CLLocationDistance radius =  (double)[[TKSAppSettingsViewController sharedManager] drivingRadius];
             CLCircularRegion *drivingRegion = [[CLCircularRegion alloc] initWithCenter:center radius:radius identifier:identifier];
+            // Add it to the list of regions to be monitored
             [self.regionsList addObject:drivingRegion];
-
+        // Otherwise, use the walking radius one.
         } else {
             CLLocationDistance radius = (double)[[TKSAppSettingsViewController sharedManager] walkingRadius];
             CLCircularRegion *walkingRegion = [[CLCircularRegion alloc] initWithCenter:center radius:radius identifier:identifier];
+            // Add it to the list of regions to be monitored
             [self.regionsList addObject:walkingRegion];
         }
     }
@@ -321,6 +331,7 @@
     [self initializeManager];
 }
 
+// Loops through all the regions and tells the location manager to start watching them
 - (void) initializeRegionMonitoring:(NSArray *)fences {
     if (![CLLocationManager isMonitoringAvailableForClass:[CLRegion class]]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Regions" message:@"This app requires region monitoring to work" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

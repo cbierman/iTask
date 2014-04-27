@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rcb-on-oPZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rcb-on-oPZ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--View Controller - TKSViewController-->
@@ -113,7 +113,7 @@
                                 <rect key="frame" x="135" y="191" width="65" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="maxDrivingRadiusEditingEnded:" destination="P03-oi-cAb" eventType="editingDidEnd" id="Afa-79-wi5"/>
                                 </connections>
@@ -140,7 +140,7 @@
                                 <rect key="frame" x="135" y="233" width="65" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="walkingRadiusEditingEnded:" destination="P03-oi-cAb" eventType="editingDidEndOnExit" id="Ehl-Px-ysu"/>
                                 </connections>
@@ -167,7 +167,7 @@
                                 <rect key="frame" x="175" y="297" width="63" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="checkInFrequency:" destination="P03-oi-cAb" eventType="editingDidEndOnExit" id="oWG-H8-Cpb"/>
                                     <action selector="checkInFrequencyBeginEditing:" destination="P03-oi-cAb" eventType="editingDidBegin" id="ndV-t2-fea"/>
@@ -303,7 +303,7 @@
                                 <rect key="frame" x="22" y="325" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="datesEditingDidBegin:" destination="ln3-eM-XIp" eventType="editingDidBegin" id="Mgb-ZD-JPn"/>
                                     <action selector="datesReturnPressed:" destination="ln3-eM-XIp" eventType="editingDidEndOnExit" id="Rem-yq-ONZ"/>
@@ -313,7 +313,7 @@
                                 <rect key="frame" x="76" y="325" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="datesEditingDidBegin:" destination="ln3-eM-XIp" eventType="editingDidBegin" id="Nng-Ig-klD"/>
                                     <action selector="datesReturnPressed:" destination="ln3-eM-XIp" eventType="editingDidEndOnExit" id="SEq-Ud-qna"/>
@@ -323,7 +323,7 @@
                                 <rect key="frame" x="124" y="325" width="91" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="datesEditingDidBegin:" destination="ln3-eM-XIp" eventType="editingDidBegin" id="8XF-qX-pq3"/>
                                     <action selector="datesReturnPressed:" destination="ln3-eM-XIp" eventType="editingDidEndOnExit" id="bsx-TC-IUI"/>
