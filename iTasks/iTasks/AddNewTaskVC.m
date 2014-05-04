@@ -204,7 +204,7 @@
     newTask.otherLocations = [self.selectedPlaces mutableCopy];
     newTask.taskExpirationDate = [self createDateFromTexFieldWithDay:self.dayField.text withMonth:self.monthField.text withYear:self.yearField.text];
  //   newTask.taskNotification = [self createNotificationForTask:newTask.title];
-    
+    NSLog(@"yo!");
     [self.delegateTasksList addObject:newTask];
     
     // Convert the task to a dictionary
@@ -223,10 +223,8 @@
     // we remove all current annotations on map
     [self.mapHandle removeAnnotations:[self.mapHandle annotations]];
     // Then mimic a cancel because we have yet to add an item
-    [self.delegate AddNewTaskViewController:self didAddTask:newTask];
-    
-    
-    
+    //[self.delegate AddNewTaskViewController:self didAddTask:newTask];
+    [self.delegate AddNewTaskViewControllerDidCancel:self];
     
 }
 
