@@ -250,6 +250,7 @@
                 }
                 // Add the expiration date to the new Task
                 newTask.taskExpirationDate = [currentTask objectForKey:@"Expiration Date"];
+                NSLog(@"Adding new tasks to taskList");
                 [self.tasksList addObject:newTask];
             }
         }
