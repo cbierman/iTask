@@ -283,10 +283,9 @@
 
 - (void) displayTasksInMap {
     for (Task *task in self.tasksList) {
-        NSLog(@"item added to map before we add it");
+        NSLog(@"item added to map before we add it %i", task.otherLocations.count);
         //[self.mapView addAnnotations:task.otherLocations];
         for (MKMapItem *mapItem in task.otherLocations) {
-            NSLog(@"item added to map %@", mapItem.placemark);
             [self.mapView addAnnotation: mapItem.placemark];
         }
     }
