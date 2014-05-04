@@ -222,6 +222,7 @@
     NSLog(@"Default tasks list: %@", defaultTasksList);
     NSMutableArray *tasksToDelete = [NSMutableArray array];
     // Make sure we have tasks to dispaly before we do anything
+    NSLog(@"defaultTasksList.count %i", defaultTasksList.count);
     if (defaultTasksList.count > 0) {
         for (NSDictionary *currentTask in defaultTasksList) {
             NSDate *currentExpDate = [currentTask objectForKey:@"Expiration Date"];
@@ -284,7 +285,6 @@
 
 - (void) displayTasksInMap {
     for (Task *task in self.tasksList) {
-        NSLog(@"item added to map before we add it %i", task.otherLocations.count);
         //[self.mapView addAnnotations:task.otherLocations];
         for (MKMapItem *mapItem in task.otherLocations) {
             [self.mapView addAnnotation: mapItem.placemark];
