@@ -144,7 +144,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     [self performSegueWithIdentifier:@"seeTaskProperties" sender: indexPath];
 }
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -231,7 +230,6 @@
             
             if (result == -1) {
                 [tasksToDelete addObject:currentTask];
-            
             } else {
             
                 // Create a new task, setting its properties from each item in the
@@ -260,6 +258,9 @@
                 [defaultTasksList removeObject:taskToBeDeleted];
             }
         }
+    } if ([self.tasksList count] > 0) {
+        NSLog(@"repopulating the map");
+        [self displayTasksInMap];
     }
 }
 -(void)deleteTaskAtIndex:(NSInteger) index {
@@ -282,9 +283,12 @@
 
 - (void) displayTasksInMap {
     for (Task *task in self.tasksList) {
+        NSLog(@"item added to map before we add it");
         //[self.mapView addAnnotations:task.otherLocations];
-        for (MKMapItem *mapItem in task.otherLocations)
+        for (MKMapItem *mapItem in task.otherLocations) {
+            NSLog(@"item added to map %@", mapItem.placemark);
             [self.mapView addAnnotation: mapItem.placemark];
+        }
     }
 }
 
