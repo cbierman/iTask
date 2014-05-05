@@ -9,10 +9,10 @@
 #import "TKSAppSettingsViewController.h"
 
 @interface TKSAppSettingsViewController ()
-@property (weak, nonatomic) IBOutlet UISegmentedControl *isWalking;
-@property (weak, nonatomic) IBOutlet UITextField *drivingRadius;
-@property (weak, nonatomic) IBOutlet UITextField *walkingRadius;
-@property (weak, nonatomic) IBOutlet UITextField *checkInFrequency;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *isWalking;
+@property (strong, nonatomic) IBOutlet UITextField *drivingRadius;
+@property (strong, nonatomic) IBOutlet UITextField *walkingRadius;
+@property (strong, nonatomic) IBOutlet UITextField *checkInFrequency;
 @property (nonatomic) CGRect originalCenter;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *completingSearchIndicator;
 

@@ -274,6 +274,7 @@
     NSMutableArray *defaultTasksList = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allTasks"] mutableCopy];
     [defaultTasksList removeObjectAtIndex:index];
     [[NSUserDefaults standardUserDefaults] setObject:defaultTasksList forKey:@"allTasks"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
@@ -353,7 +354,11 @@
     
 }
 
-- (UILocalNotification *) createNotificationForTask:(NSString *) taskName {
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
+{
+    // localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:60];
+    // find task associated with region, create local notification fireDate for task with that task
+    NSString *taskName = [region.identifier componentsSeparatedByString:@" "][0];
     //Send a notification when the user is in specified radius
     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
     // localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:60];
@@ -362,28 +367,9 @@
     localNotification.timeZone = [NSTimeZone localTimeZone];
     localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    [self presentLocalNotificationNow:localNotification];
     // Request to reload table view data
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-    return localNotification;
-    
-}
-
-- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
-{
-    // localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:60];
-    //find task associated with region, create local notification fireDate for task with that task
-    NSMutableDictionary *task;
-    for(task in self.tasksList) {
-        NSString *taskNotification = [task objectForKey:@"Task Name"];
-        NSMutableArray *locations = [task objectForKey:@"Locations"];
-        for (CLRegion *taskRegion in locations){
-            if (taskRegion == region) {
-                UILocalNotification *notification = [self createNotificationForTask:taskNotification];
-                [self presentLocalNotificationNow:notification];
-            }
-        }
-    }
-
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location update" message:@"You've entered a task region" delegate:nil cancelButtonTitle:@"Yay!" otherButtonTitles:nil];
     [alert show];
 }
