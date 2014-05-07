@@ -13,7 +13,7 @@
 #import "TKSTaskPropertiesViewController.h"
 #import <MapKit/MapKit.h>
 #import "TKSAppSettingsViewController.h"
-
+#import "CoreMotion/CoreMotion.h"
 
 @interface TKSViewController () <UITableViewDataSource, UITableViewDelegate, AddNewTaskVCDelegate, TaskPropertiesViewControllerDelagate>
 
@@ -21,6 +21,8 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *regionsList;
+@property (strong, nonatomic) CMMotionActivityManager *motionManager;
+@property BOOL isWalking;
 @end
 
 @implementation TKSViewController
@@ -40,6 +42,8 @@
     return _regionsList;
 }
 
+
+
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.tasksList.count;
 }
@@ -55,6 +59,23 @@
     [self.tableView reloadData];
     
 }
+
+- (void) initializeMotionManaging {
+    _motionManager = [[CMMotionActivityManager alloc] init];
+    
+    [_motionManager startActivityUpdatesToQueue:[[NSOperationQueue alloc] init] withHandler: ^(CMMotionActivity *activity) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if ([activity walking]) {
+                self.isWalking = YES;
+            } else if ([activity automotive]) {
+                self.isWalking = NO;
+            }
+        });
+    }
+    ];
+}
+
 
 - (void) initializeManager {
     if (![CLLocationManager locationServicesEnabled]) {
@@ -215,6 +236,7 @@
     _mapView.showsUserLocation = YES;
     _mapView.delegate = self;
     [self zoomOnUserLocation];
+    [self initializeManager];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -255,12 +277,15 @@
                 [self.tasksList addObject:newTask];
             }
         }
+        
         if ([tasksToDelete count] > 0) {
             for (NSDictionary *taskToBeDeleted in tasksToDelete) {
                 [defaultTasksList removeObject:taskToBeDeleted];
             }
         }
-    } if ([self.tasksList count] > 0) {
+    }
+    
+    if ([self.tasksList count] > 0) {
         NSLog(@"repopulating the map");
         [self displayTasksInMap];
     }
@@ -304,6 +329,7 @@
     // Get the locations for the task
     NSArray *locationsArray = [inputDict objectForKey:@"Locations"];
     // Create a region from the location
+    NSMutableDictionary *userSettings = [[[NSUserDefaults standardUserDefaults] objectForKey:@"iTasks Settings"] mutableCopy];
     for (NSDictionary *location in locationsArray) {
         CLLocationDegrees latitude = [[location objectForKey:@"Latitude"] doubleValue];
         CLLocationDegrees longitude = [[location objectForKey:@"Longitude"] doubleValue];
@@ -312,19 +338,33 @@
         
         CLLocationCoordinate2D center = CLLocationCoordinate2DMake(latitude, longitude);
         // Figure out if we're driving
-        BOOL driving = [[TKSAppSettingsViewController sharedManager] isDriving];
         // If we are, use the driving radius number
-        if (driving) {
-            CLLocationDistance radius =  (double)[[TKSAppSettingsViewController sharedManager] drivingRadius];
-            CLCircularRegion *drivingRegion = [[CLCircularRegion alloc] initWithCenter:center radius:radius identifier:identifier];
-            // Add it to the list of regions to be monitored
-            [self.regionsList addObject:drivingRegion];
+        if (self.isWalking) {
+            if ([[userSettings objectForKey:@"walkingRadius"] doubleValue]) {
+                CLLocationDistance radius =  [[userSettings objectForKey:@"walkingRadius"] doubleValue];
+                CLCircularRegion *walkingRegion = [[CLCircularRegion alloc] initWithCenter:center radius:radius identifier:identifier];
+                [self.regionsList addObject:walkingRegion];
+            } else {
+                CLLocationDistance radius = 804.672;
+                CLCircularRegion *walkingRegion = [[CLCircularRegion alloc] initWithCenter:center radius:radius identifier:identifier];
+                [self.regionsList addObject:walkingRegion];
+
+            }
+            
         // Otherwise, use the walking radius one.
         } else {
-            CLLocationDistance radius = (double)[[TKSAppSettingsViewController sharedManager] walkingRadius];
-            CLCircularRegion *walkingRegion = [[CLCircularRegion alloc] initWithCenter:center radius:radius identifier:identifier];
-            // Add it to the list of regions to be monitored
-            [self.regionsList addObject:walkingRegion];
+            if ([[userSettings objectForKey:@"drivingRadius"]doubleValue]) {
+                CLLocationDistance radius = [[userSettings objectForKey:@"drivingRadius"] doubleValue];
+                CLCircularRegion *drivingRegion = [[CLCircularRegion alloc] initWithCenter:center radius:radius identifier:identifier];
+                // Add it to the list of regions to be monitored
+                [self.regionsList addObject:drivingRegion];
+            } else {
+                CLLocationDistance radius = 3218.69;
+                CLCircularRegion *drivingRegion = [[CLCircularRegion alloc] initWithCenter:center radius:radius identifier:identifier];
+                // Add it to the list of regions to be monitored
+                [self.regionsList addObject:drivingRegion];
+            }
+
         }
     }
 }
@@ -333,7 +373,6 @@
     
     [self.tableView reloadData];
     [self displayTasksInMap];
-    [self initializeManager];
 }
 
 // Loops through all the regions and tells the location manager to start watching them
