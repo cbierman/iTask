@@ -14,7 +14,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *walkingRadius;
 @property (strong, nonatomic) IBOutlet UITextField *checkInFrequency;
 @property (nonatomic) CGRect originalCenter;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *completingSearchIndicator;
 
 
 
@@ -25,42 +24,6 @@ static TKSAppSettingsViewController *sharedMyManager = nil;
 
 @implementation TKSAppSettingsViewController
 
-+(NSUInteger) walkingRadius {
-    NSUInteger walkingRad = [sharedMyManager.walkingRadius.text integerValue];
-    return walkingRad;
-}
-
-+(NSUInteger) drivingRadius {
-    NSUInteger drivingRadius = [sharedMyManager.drivingRadius.text integerValue];
-    return drivingRadius;
-}
-
-+(BOOL) isDriving {
-    if(sharedMyManager.isWalking.selectedSegmentIndex == 1){
-        return TRUE;
-    }else {
-        return FALSE;
-    }
-}
-
-+(NSTimeInterval) checkInFrequency {
-    return [sharedMyManager.checkInFrequency.text integerValue]*3600;
-}
-
-+ (id)sharedManager {
-    @synchronized(self) {
-        if(sharedMyManager == nil)
-            sharedMyManager = [[super allocWithZone:NULL] init];
-    }
-    return sharedMyManager;
-}
-
--(UIActivityIndicatorView *)completingSearchIndicator {
-    if (!_completingSearchIndicator) {
-        _completingSearchIndicator = [[UIActivityIndicatorView alloc] init];
-    }
-    return _completingSearchIndicator;
-}
 
 
 - (IBAction)walkingRadiusEditingEnded:(id)sender {
@@ -89,7 +52,19 @@ static TKSAppSettingsViewController *sharedMyManager = nil;
 }
 
 - (IBAction)donePressed:(id)sender {
-
+    NSMutableDictionary *userSettings = [[[NSUserDefaults standardUserDefaults] objectForKey:@"iTasks Settings" ] mutableCopy];
+    NSNumber *walkingRad = [NSNumber numberWithInt:[self.walkingRadius.text intValue]];
+    NSNumber *drivingRadius = [NSNumber numberWithInt:[self.drivingRadius.text intValue]];
+    
+    NSNumber *checkInFrequency = [NSNumber numberWithLong:[self.checkInFrequency.text integerValue]*3600];
+    [userSettings setObject:walkingRad forKey:@"walkingRadius"];
+    [userSettings setObject:drivingRadius forKey:@"drivingRadius"];
+    [userSettings setObject:checkInFrequency forKey:@"checkInFrequency"];
+    [[NSUserDefaults standardUserDefaults] setObject:userSettings forKey:@"iTasks Settings"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self.delegate AppSettingsViewControllerDidFinish:self];
+    
 }
 
 
@@ -98,7 +73,6 @@ static TKSAppSettingsViewController *sharedMyManager = nil;
 {
     [super viewDidLoad];
     self.originalCenter = self.view.frame;
-    self.completingSearchIndicator.hidesWhenStopped = YES;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

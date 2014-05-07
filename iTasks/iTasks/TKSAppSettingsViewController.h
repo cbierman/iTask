@@ -11,21 +11,12 @@
 @protocol AppSettingsViewControllerDelegate <NSObject>
 
 - (void) AppSettingsViewControllerDidCancel: (TKSAppSettingsViewController *)controller;
-
+- (void) AppSettingsViewControllerDidFinish:(TKSAppSettingsViewController *)controller;
 @end
 
 
 @interface TKSAppSettingsViewController : UIViewController
 
 @property (weak, nonatomic) id<AppSettingsViewControllerDelegate> delegate;
-
-+(BOOL) isDriving;
-+(NSTimeInterval) checkInFrequency;
-+(NSUInteger) walkingRadius;
-+(NSUInteger) drivingRadius;
-
-+ (id)sharedManager;
-
-
 
 @end

@@ -380,4 +380,8 @@
 
 }
 
+- (void) AppSettingsViewControllerDidFinish:(TKSAppSettingsViewController *)controller {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end
