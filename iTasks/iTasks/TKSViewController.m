@@ -241,10 +241,8 @@
     self.tableView.dataSource = self;
     
     NSMutableArray *defaultTasksList = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allTasks"] mutableCopy];
-    NSLog(@"Default tasks list: %@", defaultTasksList);
     NSMutableArray *tasksToDelete = [NSMutableArray array];
     // Make sure we have tasks to dispaly before we do anything
-    NSLog(@"defaultTasksList.count %i", defaultTasksList.count);
     if (defaultTasksList.count > 0) {
         for (NSDictionary *currentTask in defaultTasksList) {
             NSDate *currentExpDate = [currentTask objectForKey:@"Expiration Date"];
@@ -262,18 +260,23 @@
                 newTask.description = [currentTask objectForKey:@"Description"];
                 // Get the list of locations from the current task
                 NSArray *currentLocations = [currentTask objectForKey:@"Locations"];
+                NSMutableArray *selectedPlaces = [[NSMutableArray alloc] init];
                 // Turn each location item into an MKMapItem for use on the map
                 for (NSDictionary *locationsDict in currentLocations) {
                     double latitude = [[locationsDict objectForKey:@"Latitude"] doubleValue];
                     double longitude = [[locationsDict objectForKey:@"Longitude"] doubleValue];
                     CLLocationCoordinate2D currentCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
                     MKPlacemark *currentPlacemark = [[MKPlacemark alloc] initWithCoordinate:currentCoordinate addressDictionary:nil];
+                    //NSLog(@"current placemark: %@", currentPlacemark);
                     MKMapItem *currentMapItem = [[MKMapItem alloc] initWithPlacemark:currentPlacemark];
-                    [newTask.otherLocations addObject:currentMapItem];
+                    [currentMapItem setName:newTask.title];
+                    //NSLog(@"current map item, %@", currentMapItem);
+                    [selectedPlaces addObject:currentMapItem];
+                    NSLog(@"selected places count = %d", selectedPlaces.count);
                 }
                 // Add the expiration date to the new Task
                 newTask.taskExpirationDate = [currentTask objectForKey:@"Expiration Date"];
-                NSLog(@"Adding new tasks to taskList");
+                newTask.otherLocations = selectedPlaces;
                 [self.tasksList addObject:newTask];
             }
         }
@@ -312,6 +315,7 @@
 - (void) displayTasksInMap {
     for (Task *task in self.tasksList) {
         //[self.mapView addAnnotations:task.otherLocations];
+        NSLog(@"Number of otherLocations: %d", [task.otherLocations count]);
         for (MKMapItem *mapItem in task.otherLocations) {
             [self.mapView addAnnotation: mapItem.placemark];
         }

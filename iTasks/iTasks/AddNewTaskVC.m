@@ -204,7 +204,6 @@
     newTask.otherLocations = [self.selectedPlaces mutableCopy];
     newTask.taskExpirationDate = [self createDateFromTexFieldWithDay:self.dayField.text withMonth:self.monthField.text withYear:self.yearField.text];
  //   newTask.taskNotification = [self createNotificationForTask:newTask.title];
-    NSLog(@"yo!");
     [self.delegateTasksList addObject:newTask];
     
     // Convert the task to a dictionary

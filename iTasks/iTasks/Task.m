@@ -25,6 +25,7 @@
 - (void) addLocationToList:(MKMapItem *) location {
     
     [self.otherLocations addObject: location];
+    NSLog(@"the other locations count, %d", self.otherLocations.count);
 
 }
 

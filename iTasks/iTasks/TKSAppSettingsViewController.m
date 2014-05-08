@@ -15,9 +15,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *checkInFrequency;
 @property (nonatomic) CGRect originalCenter;
 
-
-
-
 @end
 
 static TKSAppSettingsViewController *sharedMyManager = nil;
